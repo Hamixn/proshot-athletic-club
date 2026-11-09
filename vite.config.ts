@@ -47,6 +47,7 @@ function proshotStandaloneApiPlugin(): Plugin {
 }
 
 export default defineConfig({
+  base: './',
   plugins: [react(), tailwindcss(), proshotStandaloneApiPlugin()],
   build: {
     outDir: 'dist',
