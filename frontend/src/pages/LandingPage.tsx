@@ -153,19 +153,31 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         onPointerMove={handleHeroPointer}
         className="relative min-h-[88vh] border-b border-[#F2EFE9]/12 flex flex-col justify-between overflow-hidden"
       >
-        {/* Layer 1: Scroll & Pointer Parallax Architectural Gym Photograph */}
+        {/* Layer 1: Scroll & Pointer Parallax Cinema Video / Architectural Background */}
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <img
-            src={resolveAssetPath(selectedBranch.image)}
-            alt={selectedBranch.name}
-            className="w-full h-full object-cover opacity-55 will-change-transform transition-opacity duration-700"
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster={resolveAssetPath(selectedBranch.image)}
+            className="w-full h-full object-cover opacity-60 will-change-transform"
             style={{
               transform: `translate3d(${(heroPointer.x * -14).toFixed(1)}px, ${(
                 heroBgTranslateY +
                 heroPointer.y * -10
               ).toFixed(1)}px, 0) scale(${heroBgScale.toFixed(3)})`,
             }}
-          />
+          >
+            <source src={resolveAssetPath('video/hero-triptych.webm')} type="video/webm" />
+            <source src={resolveAssetPath('video/hero-triptych.mp4')} type="video/mp4" />
+            {/* Fallback to image if video not supported */}
+            <img
+              src={resolveAssetPath(selectedBranch.image)}
+              alt={selectedBranch.name}
+              className="w-full h-full object-cover"
+            />
+          </video>
         </div>
 
         {/* Layer 2: Raw WebGL Volumetric Light Caustics blended over photography */}
