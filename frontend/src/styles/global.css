@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   PROSHOT ATHLETIC CLUB — Private Architectural & Editorial Design System
+   Aesthetic: Matte Obsidian, Brushed Brass Hairlines, Warm Bone Paper, Kinetic Parallax
+   ============================================================================ */
+
+:root {
+  --color-ink: #070708;
+  --color-charcoal: #111113;
+  --color-charcoal-elevated: #17171A;
+  --color-charcoal-subtle: #1D1D21;
+
+  --color-brass: #C9A96A;
+  --color-brass-light: #DFC690;
+  --color-brass-deep: #967942;
+  --color-hairline: rgba(201, 169, 106, 0.22);
+  --color-hairline-strong: rgba(201, 169, 106, 0.48);
+
+  --color-graphite: #2A2B2F;
+  --color-silver: #B9BCC2;
+  --color-hairline-silver: rgba(185, 188, 194, 0.20);
+
+  --color-bone: #F2EFE9;
+  --color-ash: #8A857B;
+  --color-stone: #57534B;
+
+  --color-verdigris: #5E9E7E;
+  --color-ochre: #C99752;
+  --color-oxblood: #B85A5A;
+
+  --font-sans: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-ink);
+  color: var(--color-bone);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0;
+  overflow-x: hidden;
+}
+
+.proshot-member-center-app {
+  font-family: var(--font-sans);
+  direction: rtl;
+  text-align: right;
+  color: var(--color-bone);
+  background-color: var(--color-ink);
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+
+.proshot-member-center-app *,
+.proshot-member-center-app *::before,
+.proshot-member-center-app *::after {
+  box-sizing: inherit;
+}
+
+/* Never apply positive letter-spacing to Persian RTL text */
+.proshot-member-center-app :not([dir="ltr"]):not(.font-editorial):not(.eyebrow-latin) {
+  letter-spacing: 0 !important;
+}
+
+.font-editorial {
+  font-family: var(--font-serif);
+}
+
+.eyebrow-latin {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em !important;
+  color: var(--color-ash);
+  direction: ltr;
+  display: inline-block;
+}
+
+/* Kinetic Marquee Ticker (Equinox / Buckler Motion Strip) */
+@keyframes proshotMarquee {
+  0% {
+    transform: translate3d(0%, 0, 0);
+  }
+  100% {
+    transform: translate3d(50%, 0, 0);
+  }
+}
+
+.animate-marquee-rtl {
+  display: flex;
+  width: max-content;
+  animation: proshotMarquee 32s linear infinite;
+}
+
+/* Scroll-Triggered Reveal Animations */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translate3d(0, 36px, 0);
+  transition:
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Image Curtain Unmask on Scroll */
+.curtain-reveal {
+  clip-path: inset(12% 0 12% 0);
+  transform: scale(1.08);
+  transition:
+    clip-path 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.is-visible .curtain-reveal,
+.curtain-reveal.is-visible {
+  clip-path: inset(0% 0 0% 0);
+  transform: scale(1);
+}
+
+@keyframes editorialFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-editorial {
+  animation: editorialFadeUp 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-editorial,
+  .animate-marquee-rtl,
+  .reveal-on-scroll,
+  .curtain-reveal,
+  .proshot-member-center-app * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+}
+
+.proshot-member-center-app button:focus-visible,
+.proshot-member-center-app input:focus-visible,
+.proshot-member-center-app select:focus-visible,
+.proshot-member-center-app textarea:focus-visible,
+.proshot-member-center-app a:focus-visible {
+  outline: 1px solid var(--color-brass);
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: #232327;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brass);
+}
