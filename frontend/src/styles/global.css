@@ -6,6 +6,8 @@
    ============================================================================ */
 
 :root {
+  --mi: 1; /* Motion intensity multiplier: 0.6 subtle · 1.0 editorial · 1.4 cinematic */
+
   --color-ink: #070708;
   --color-charcoal: #111113;
   --color-charcoal-elevated: #17171A;
@@ -35,6 +37,16 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+html.lenis {
+  scroll-behavior: auto !important;
 }
 
 body {
@@ -57,6 +69,7 @@ body {
   background-color: var(--color-ink);
   box-sizing: border-box;
   letter-spacing: 0;
+  overflow-x: clip;
 }
 
 .proshot-member-center-app *,
@@ -85,20 +98,239 @@ body {
   display: inline-block;
 }
 
-/* Kinetic Marquee Ticker (Equinox / Buckler Motion Strip) */
-@keyframes proshotMarquee {
-  0% {
-    transform: translate3d(0%, 0, 0);
-  }
-  100% {
-    transform: translate3d(50%, 0, 0);
+/* ============================================================================
+   UNIFIED CSS-VARIABLE MOTION & PARALLAX SYSTEM
+   ============================================================================ */
+
+/* Top Page Scroll Progress Hairline */
+.scroll-progress-bar {
+  transform: scaleX(var(--page-p, 0));
+  transform-origin: right center;
+  will-change: transform;
+}
+
+/* Generic Depth Layer (--py: -1.25..+1.25, --speed: px travel at edge) */
+.px-layer {
+  transform: translate3d(0, calc(var(--py, 0) * var(--speed, 0) * -1px * var(--mi, 1)), 0);
+  will-change: transform;
+}
+
+/* ParallaxFrame Image & Pointer 3D Tilt */
+.parallax-frame--tilt {
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  will-change: transform;
+}
+
+.parallax-frame__img {
+  transform: translate3d(
+      0,
+      calc(var(--py, 0) * var(--speed, 0.22) * -135px * var(--mi, 1)),
+      0
+    )
+    scale(1.22);
+}
+
+.parallax-frame__glare {
+  opacity: var(--glare-o, 0);
+  background: radial-gradient(
+    420px circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(201, 169, 106, 0.22),
+    transparent 65%
+  );
+}
+
+/* Multi-Depth Hero Layers (driven by hero section --p: 0..1 exit progress) */
+.hero-video {
+  transform: translate3d(
+      calc(var(--mx, 0) * -14px * var(--mi, 1)),
+      calc(var(--p, 0) * 36vh * var(--mi, 1) + var(--my, 0) * -10px * var(--mi, 1)),
+      0
+    )
+    scale(calc(1.08 + var(--p, 0) * 0.2 * var(--mi, 1)));
+  opacity: calc(0.64 - var(--p, 0) * 0.36);
+  will-change: transform, opacity;
+}
+
+/* Portrait Mobile Triptych Pan: reveals all 3 vertical columns of the 16:9 video */
+@media (max-aspect-ratio: 1/1) {
+  .hero-video {
+    width: 177.78svh !important;
+    max-width: none !important;
+    height: 100% !important;
+    right: 0;
+    animation: triptychPan 16s ease-in-out infinite alternate;
   }
 }
 
-.animate-marquee-rtl {
-  display: flex;
-  width: max-content;
-  animation: proshotMarquee 32s linear infinite;
+@keyframes triptychPan {
+  0% {
+    object-position: 15% 50%;
+    translate: 0 0;
+  }
+  100% {
+    object-position: 85% 50%;
+    translate: calc(100vw - 177.78svh) 0;
+  }
+}
+
+/* Giant Outlined Architectural Wordmark (PROSHOT) behind Hero Headline */
+.hero-wordmark {
+  font-family: var(--font-sans);
+  font-size: clamp(5.2rem, 21vw, 22rem);
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: 0.08em !important;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201, 169, 106, 0.16);
+  transform: translate3d(
+    calc(var(--p, 0) * -18vw * var(--mi, 1) + var(--mx, 0) * 18px),
+    calc(var(--p, 0) * 14vh * var(--mi, 1)),
+    0
+  );
+  will-change: transform;
+  user-select: none;
+  pointer-events: none;
+}
+
+.hero-copy-layer {
+  transform: translate3d(0, calc(var(--p, 0) * -14vh * var(--mi, 1)), 0);
+  opacity: calc(1 - var(--p, 0) * 0.72);
+  will-change: transform, opacity;
+}
+
+/* Word-Masked Split Reveal (Persian-safe) */
+.split-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding: 0.14em 0.02em;
+  margin: -0.14em 0;
+}
+
+.split-word {
+  display: inline-block;
+  transform: translate3d(0, 115%, 0);
+  animation: splitRise 0.95s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform;
+}
+
+@keyframes splitRise {
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Scroll Cue Pulse Line */
+@keyframes scrollPulse {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: 0.2;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+    opacity: 1;
+  }
+  51% {
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    opacity: 0.2;
+  }
+}
+
+.scroll-cue-line {
+  animation: scrollPulse 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* Outlined Ghost Numeral in Branch Showcase & Footer */
+.ghost-numeral {
+  font-family: var(--font-serif);
+  font-size: clamp(6rem, 15vw, 13rem);
+  font-weight: 700;
+  line-height: 0.85;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201, 169, 106, 0.20);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Directional Wipe on Branch Change */
+.branch-wipe {
+  animation: branchWipe 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes branchWipe {
+  from {
+    clip-path: inset(0 0 0 100%);
+    transform: scale(1.05);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    transform: scale(1);
+  }
+}
+
+/* Pinned Expanding Architectural Scene (Section 4.5) */
+.scroll-scene {
+  position: relative;
+}
+
+.scroll-scene__sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  --open: clamp(0, calc(var(--p, 1) * 1.65), 1);
+}
+
+.expand-frame {
+  clip-path: inset(
+    calc((1 - var(--open, 1)) * 14%)
+    calc((1 - var(--open, 1)) * 18%)
+    round calc((1 - var(--open, 1)) * 4px)
+  );
+  transform: scale(calc(1.16 - var(--open, 1) * 0.16));
+  will-change: clip-path, transform;
+}
+
+@media (max-width: 640px) {
+  .expand-frame {
+    clip-path: inset(
+      calc((1 - var(--open, 1)) * 10%)
+      calc((1 - var(--open, 1)) * 6%)
+      round calc((1 - var(--open, 1)) * 4px)
+    );
+  }
+}
+
+html[data-motion="lite"] .expand-frame {
+  clip-path: none !important;
+}
+
+.scene-line {
+  --t: clamp(0, calc((var(--p, 1) - var(--start, 0)) * 4.5), 1);
+  opacity: var(--t, 1);
+  transform: translate3d(0, calc((1 - var(--t, 1)) * 26px), 0);
+  will-change: opacity, transform;
+}
+
+/* Footer Architectural Wordmark Rise */
+.footer-wordmark {
+  font-family: var(--font-sans);
+  font-size: clamp(3.5rem, 14vw, 14rem);
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: 0.12em !important;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(242, 239, 233, 0.09);
+  transform: translate3d(0, calc((1 - var(--p, 1)) * 45px), 0);
+  will-change: transform;
+  user-select: none;
+  pointer-events: none;
 }
 
 /* Scroll-Triggered Reveal Animations */
@@ -118,17 +350,13 @@ body {
 
 /* Image Curtain Unmask on Scroll */
 .curtain-reveal {
-  clip-path: inset(12% 0 12% 0);
-  transform: scale(1.08);
-  transition:
-    clip-path 1.1s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+  clip-path: inset(10% 0 10% 0);
+  transition: clip-path 1.1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .is-visible .curtain-reveal,
 .curtain-reveal.is-visible {
   clip-path: inset(0% 0 0% 0);
-  transform: scale(1);
 }
 
 @keyframes editorialFadeUp {
@@ -147,10 +375,25 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .scroll-scene {
+    height: auto !important;
+  }
+  .scroll-scene__sticky {
+    position: static !important;
+    height: auto !important;
+    min-height: 60svh;
+  }
   .animate-editorial,
-  .animate-marquee-rtl,
   .reveal-on-scroll,
   .curtain-reveal,
+  .split-word,
+  .hero-video,
+  .hero-wordmark,
+  .hero-copy-layer,
+  .expand-frame,
+  .scene-line,
+  .px-layer,
+  .parallax-frame__img,
   .proshot-member-center-app * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;

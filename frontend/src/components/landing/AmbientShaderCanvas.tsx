@@ -148,10 +148,12 @@ export const AmbientShaderCanvas: React.FC<AmbientShaderCanvasProps> = ({
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let rafId = 0;
+    let isVisible = true;
     const start = performance.now();
 
     const render = (now: number) => {
-      if (!document.hidden) {
+      rafId = 0;
+      if (!document.hidden && isVisible) {
         const elapsed = reducedMotion ? 0 : (now - start) * 0.001;
         pointerX += (targetX - pointerX) * 0.06;
         pointerY += (targetY - pointerY) * 0.06;
@@ -170,15 +172,29 @@ export const AmbientShaderCanvas: React.FC<AmbientShaderCanvasProps> = ({
 
         gl.drawArrays(gl.TRIANGLES, 0, 6);
       }
-      if (!reducedMotion) {
+      if (!reducedMotion && isVisible) {
         rafId = requestAnimationFrame(render);
       }
     };
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          isVisible = e.isIntersecting;
+          if (isVisible && !rafId && !reducedMotion) {
+            rafId = requestAnimationFrame(render);
+          }
+        });
+      },
+      { rootMargin: '100px 0px 100px 0px' }
+    );
+    io.observe(canvas);
 
     rafId = requestAnimationFrame(render);
 
     return () => {
       cancelAnimationFrame(rafId);
+      io.disconnect();
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('scroll', onScroll);
       ro.disconnect();
