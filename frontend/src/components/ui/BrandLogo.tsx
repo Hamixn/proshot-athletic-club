@@ -5,7 +5,8 @@ export function resolveAssetPath(relPath: string): string {
   if (base) {
     return `${base.replace(/\/$/, '')}/${relPath.replace(/^\//, '')}`;
   }
-  return `/assets/${relPath.replace(/^\//, '')}`;
+  const cleanPath = relPath.replace(/^\//, '');
+  return `./assets/${cleanPath}`;
 }
 
 export function isPremiumBranch(branchSlug?: string | null, branchName?: string | null): boolean {

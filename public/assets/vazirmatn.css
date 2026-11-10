@@ -1,0 +1,106 @@
+/* Self-Hosted Vazirmatn Persian Font & Cormorant Garamond Editorial Display Serif */
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Vazirmatn Regular'), local('Vazirmatn-Regular'),
+       url('fonts/vazirmatn/vazirmatn-arabic-400-normal.woff2') format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local('Vazirmatn Medium'), local('Vazirmatn-Medium'),
+       url('fonts/vazirmatn/vazirmatn-arabic-500-normal.woff2') format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Vazirmatn Bold'), local('Vazirmatn-Bold'),
+       url('fonts/vazirmatn/vazirmatn-arabic-700-normal.woff2') format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: local('Vazirmatn Black'), local('Vazirmatn-Black'),
+       url('fonts/vazirmatn/vazirmatn-arabic-900-normal.woff2') format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+/* Latin glyphs for Vazirmatn */
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/vazirmatn/vazirmatn-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/vazirmatn/vazirmatn-latin-700-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Self-Hosted Cormorant Garamond Editorial Serif for Latin Monographs & Numbers */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/cormorant/cormorant-garamond-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/cormorant/cormorant-garamond-latin-400-italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/cormorant/cormorant-garamond-latin-600-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/cormorant/cormorant-garamond-latin-700-normal.woff2') format('woff2');
+}
+
+.proshot-member-center-app {
+  font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, Tahoma, sans-serif;
+  direction: rtl;
+  text-align: right;
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+
+.proshot-member-center-app *,
+.proshot-member-center-app *::before,
+.proshot-member-center-app *::after {
+  box-sizing: inherit;
+}
