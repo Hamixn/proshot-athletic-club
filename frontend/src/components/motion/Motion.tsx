@@ -52,23 +52,20 @@ export const Parallax: React.FC<ParallaxProps> = ({
 };
 
 /**
- * Pinned (sticky) scene. Descendants read --p (0..1) and --open (0..1).
+ * Architectural Scroll Scene. Descendants read --p (0..1) and --open (0..1) as the section enters the viewport,
+ * with zero extra empty scroll runway below it.
  */
 export const ScrollScene: React.FC<{
   heightVh?: number;
   className?: string;
   stickyClassName?: string;
   children: React.ReactNode;
-}> = ({ heightVh = 220, className = '', stickyClassName = '', children }) => {
+}> = ({ className = '', stickyClassName = '', children }) => {
   const ref = useRef<HTMLElement>(null);
   useScrollItem(ref, 'scene');
 
   return (
-    <section
-      ref={ref}
-      style={{ height: `${heightVh}vh` }}
-      className={`scroll-scene ${className}`}
-    >
+    <section ref={ref} className={`scroll-scene ${className}`}>
       <div className={`scroll-scene__sticky ${stickyClassName}`}>{children}</div>
     </section>
   );

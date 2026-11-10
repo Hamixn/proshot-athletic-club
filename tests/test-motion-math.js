@@ -16,6 +16,6 @@ assert.strictEqual(viewProgress(-400, 400, 800), 1); // just left
 assert.strictEqual(centerOffset(400 - 100, 200, 800), 0); // centred
 assert.strictEqual(exitProgress(0, 700), 0); // hero at rest
 assert.strictEqual(exitProgress(-700, 700), 1); // hero gone
-assert.strictEqual(sceneProgress(0, 1760, 800), 0); // scene pinned, start
-assert.strictEqual(sceneProgress(-960, 1760, 800), 1); // scene pinned, end
+assert.strictEqual(sceneProgress(800, 640, 800), 0); // scene entering viewport bottom
+assert.strictEqual(sceneProgress(-640, 640, 800), 1); // scene leaving viewport top
 console.log('✅ 9. Motion & Parallax Math Engine: Passed');

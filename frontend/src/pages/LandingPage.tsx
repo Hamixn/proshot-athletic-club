@@ -756,20 +756,19 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </section>
 
         {/* =====================================================================
-            4.5 PINNED EXPANDING ARCHITECTURAL SCENE (Spa & Recovery Choreographed Reveal)
+            4.5 EXPANDING ARCHITECTURAL SCENE (Spa & Recovery Choreographed Reveal)
             ===================================================================== */}
         <div id="recovery">
           <ScrollScene
-            heightVh={200}
             className="border-b border-[#F2EFE9]/12 bg-[#050506]"
-            stickyClassName="flex items-center justify-center"
+            stickyClassName="flex items-center justify-center py-16 sm:py-24"
           >
-            {/* Expanding Architectural Frame (--open 0 -> 1 as user scrolls) */}
+            {/* Expanding Architectural Frame (--open 0 -> 1 as section enters viewport) */}
             <div className="expand-frame absolute inset-0 overflow-hidden border border-[#C9A96A]/25">
               <img
                 src={resolveAssetPath('img/spa-recovery.jpg')}
                 alt="مجموعه آبی و ریکاوری باشگاه پروشات شیراز"
-                className="w-full h-full object-cover opacity-65"
+                className="w-full h-full object-cover opacity-70"
               />
               <div
                 className="absolute inset-0 pointer-events-none"
@@ -780,33 +779,33 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               />
             </div>
 
-            {/* Choreographed Scroll-Driven Copy & Pillars */}
-            <div className="relative z-10 max-w-[1400px] w-full mx-auto px-5 sm:px-12 py-12">
+            {/* Choreographed Scroll-Driven Copy & Pillars (fully revealed as soon as section enters view) */}
+            <div className="relative z-10 max-w-[1400px] w-full mx-auto px-5 sm:px-12 py-6">
               <div className="max-w-2xl space-y-4 sm:space-y-6">
                 <span
                   className="scene-line inline-flex items-center gap-2 px-3 py-1 bg-[#070708]/85 border border-[#C9A96A]/45 text-xs font-bold text-[#C9A96A]"
-                  style={{ '--start': 0.12 } as React.CSSProperties}
+                  style={{ '--start': 0.04 } as React.CSSProperties}
                 >
                   ریکاوری و بازسازی عضلانی پس از تمرین
                 </span>
 
                 <h3
-                  className="scene-line text-2xl sm:text-5xl font-black text-[#F2EFE9] leading-tight"
-                  style={{ '--start': 0.25 } as React.CSSProperties}
+                  className="scene-line text-2xl sm:text-5xl font-black text-[#F2EFE9] leading-tight drop-shadow-md"
+                  style={{ '--start': 0.1 } as React.CSSProperties}
                 >
                   سونا خشک و بخار، جکوزی و حوضچه آب سرد در کنار سالن تمرینی.
                 </h3>
 
                 <p
-                  className="scene-line text-xs sm:text-base text-[#F2EFE9]/85 leading-7 sm:leading-8"
-                  style={{ '--start': 0.38 } as React.CSSProperties}
+                  className="scene-line text-xs sm:text-base text-[#F2EFE9]/90 leading-7 sm:leading-8 drop-shadow-xs"
+                  style={{ '--start': 0.16 } as React.CSSProperties}
                 >
                   ترکیب تمرینات قدرتی با پروتکل‌های ریکاوری استاندارد و کافی‌شاپ تخصصی ورزشی برای به حداکثر رساندن بازدهی هر جلسه تمرین در شعب پروشات شیراز.
                 </p>
 
                 <div
                   className="scene-line pt-2 grid grid-cols-3 gap-2.5 sm:gap-4 max-w-lg"
-                  style={{ '--start': 0.5 } as React.CSSProperties}
+                  style={{ '--start': 0.22 } as React.CSSProperties}
                 >
                   <div className="p-3 sm:p-4 bg-[#070708]/85 border border-[#F2EFE9]/15 backdrop-blur-xs">
                     <span className="text-xs sm:text-sm font-black text-[#C9A96A] block">

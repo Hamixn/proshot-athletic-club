@@ -13,6 +13,6 @@ export const centerOffset = (top: number, height: number, vh: number) =>
 export const exitProgress = (top: number, height: number) =>
   clamp(-top / Math.max(height, 1));
 
-/** Pinned scene: 0 when scene top hits viewport top, 1 when scene bottom hits viewport bottom */
+/** Pinned or view-driven scene: 0 when scene enters viewport bottom, 1 when scene leaves */
 export const sceneProgress = (top: number, height: number, vh: number) =>
-  clamp(-top / Math.max(height - vh, 1));
+  clamp((vh - top) / Math.max(vh + height, 1));
