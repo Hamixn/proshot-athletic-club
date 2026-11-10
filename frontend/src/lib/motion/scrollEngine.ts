@@ -21,6 +21,7 @@ const finePointer = () =>
 
 let raf = 0;
 let started = false;
+let isLiteTouch = false;
 let lastY = 0;
 let velocity = 0;
 const ptr = { x: 0, y: 0, tx: 0, ty: 0 };
@@ -35,47 +36,53 @@ function frame() {
   velocity = lerp(velocity, y - lastY, 0.22);
   lastY = y;
 
-  // READ phase (visible items only)
-  const reads: Array<[Item, DOMRect]> = [];
-  items.forEach((it) => {
-    if (it.visible) {
-      reads.push([it, it.el.getBoundingClientRect()]);
-    }
-  });
+  // On touch/mobile devices, skip per-frame getBoundingClientRect() layout reads on scroll
+  // so native mobile scrolling stays locked at 60/120fps with zero jank.
+  if (!isLiteTouch) {
+    // READ phase (visible items only)
+    const reads: Array<[Item, DOMRect]> = [];
+    items.forEach((it) => {
+      if (it.visible) {
+        reads.push([it, it.el.getBoundingClientRect()]);
+      }
+    });
 
-  // WRITE phase
-  for (const [it, r] of reads) {
-    switch (it.kind) {
-      case 'center':
-        it.el.style.setProperty('--py', centerOffset(r.top, r.height, vh).toFixed(4));
-        break;
-      case 'view':
-        it.el.style.setProperty('--p', viewProgress(r.top, r.height, vh).toFixed(4));
-        break;
-      case 'exit':
-        it.el.style.setProperty('--p', exitProgress(r.top, r.height).toFixed(4));
-        break;
-      case 'scene':
-        it.el.style.setProperty('--p', sceneProgress(r.top, r.height, vh).toFixed(4));
-        break;
+    // WRITE phase
+    for (const [it, r] of reads) {
+      switch (it.kind) {
+        case 'center':
+          it.el.style.setProperty('--py', centerOffset(r.top, r.height, vh).toFixed(4));
+          break;
+        case 'view':
+          it.el.style.setProperty('--p', viewProgress(r.top, r.height, vh).toFixed(4));
+          break;
+        case 'exit':
+          it.el.style.setProperty('--p', exitProgress(r.top, r.height).toFixed(4));
+          break;
+        case 'scene':
+          it.el.style.setProperty('--p', sceneProgress(r.top, r.height, vh).toFixed(4));
+          break;
+      }
     }
   }
 
   const max = Math.max(root.scrollHeight - vh, 1);
   root.style.setProperty('--page-p', clamp(y / max).toFixed(4));
-  root.style.setProperty('--scroll-v', velocity.toFixed(2));
 
-  ptr.x = lerp(ptr.x, ptr.tx, 0.08);
-  ptr.y = lerp(ptr.y, ptr.ty, 0.08);
-  root.style.setProperty('--mx', ptr.x.toFixed(4));
-  root.style.setProperty('--my', ptr.y.toFixed(4));
+  if (!isLiteTouch) {
+    root.style.setProperty('--scroll-v', velocity.toFixed(2));
+    ptr.x = lerp(ptr.x, ptr.tx, 0.08);
+    ptr.y = lerp(ptr.y, ptr.ty, 0.08);
+    root.style.setProperty('--mx', ptr.x.toFixed(4));
+    root.style.setProperty('--my', ptr.y.toFixed(4));
+    subscribers.forEach((cb) => cb(velocity));
+  }
 
-  subscribers.forEach((cb) => cb(velocity));
-
-  const settled =
-    Math.abs(velocity) < 0.05 &&
-    Math.abs(ptr.tx - ptr.x) < 0.001 &&
-    Math.abs(ptr.ty - ptr.y) < 0.001;
+  const settled = isLiteTouch
+    ? true
+    : Math.abs(velocity) < 0.05 &&
+      Math.abs(ptr.tx - ptr.x) < 0.001 &&
+      Math.abs(ptr.ty - ptr.y) < 0.001;
 
   if (!settled) {
     raf = requestAnimationFrame(frame);
@@ -94,28 +101,37 @@ export function startEngine(): () => void {
   const root = document.documentElement;
   lastY = window.scrollY || 0;
 
-  if (typeof navigator !== 'undefined' && navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) {
+  const lowCpu =
+    typeof navigator !== 'undefined' &&
+    Boolean(navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
+
+  isLiteTouch = !finePointer() || lowCpu;
+  if (isLiteTouch) {
     root.dataset.motion = 'lite';
+  } else {
+    delete root.dataset.motion;
   }
 
-  io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        items.forEach((it) => {
-          if (it.el === e.target) {
-            it.visible = e.isIntersecting;
-          }
+  if (!isLiteTouch) {
+    io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          items.forEach((it) => {
+            if (it.el === e.target) {
+              it.visible = e.isIntersecting;
+            }
+          });
         });
-      });
-      wake();
-    },
-    { rootMargin: '25% 0px 25% 0px' }
-  );
+        wake();
+      },
+      { rootMargin: '25% 0px 25% 0px' }
+    );
 
-  items.forEach((it) => io?.observe(it.el));
+    items.forEach((it) => io?.observe(it.el));
+  }
 
   const onPointer = (e: PointerEvent) => {
-    if (!finePointer()) return;
+    if (isLiteTouch) return;
     ptr.tx = (e.clientX / Math.max(window.innerWidth, 1) - 0.5) * 2;
     ptr.ty = (e.clientY / Math.max(window.innerHeight, 1) - 0.5) * 2;
     wake();
@@ -123,7 +139,9 @@ export function startEngine(): () => void {
 
   window.addEventListener('scroll', wake, { passive: true });
   window.addEventListener('resize', wake, { passive: true });
-  window.addEventListener('pointermove', onPointer, { passive: true });
+  if (!isLiteTouch) {
+    window.addEventListener('pointermove', onPointer, { passive: true });
+  }
   wake();
 
   return () => {

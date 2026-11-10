@@ -82,6 +82,12 @@ export const AmbientShaderCanvas: React.FC<AmbientShaderCanvasProps> = ({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    // Skip continuous 60fps WebGL shader loop on mobile/touch devices to eliminate scroll lag & GPU drain
+    const isFinePointer =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (!isFinePointer) return;
+
     const gl = canvas.getContext('webgl', { alpha: false, antialias: false, depth: false });
     if (!gl) return;
 

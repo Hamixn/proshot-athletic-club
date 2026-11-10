@@ -106,19 +106,16 @@ body {
 .scroll-progress-bar {
   transform: scaleX(var(--page-p, 0));
   transform-origin: right center;
-  will-change: transform;
 }
 
 /* Generic Depth Layer (--py: -1.25..+1.25, --speed: px travel at edge) */
 .px-layer {
   transform: translate3d(0, calc(var(--py, 0) * var(--speed, 0) * -1px * var(--mi, 1)), 0);
-  will-change: transform;
 }
 
 /* ParallaxFrame Image & Pointer 3D Tilt */
 .parallax-frame--tilt {
   transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-  will-change: transform;
 }
 
 .parallax-frame__img {
@@ -128,6 +125,18 @@ body {
       0
     )
     scale(1.22);
+}
+
+html[data-motion="lite"] .px-layer {
+  transform: none !important;
+}
+
+html[data-motion="lite"] .parallax-frame--tilt {
+  transform: none !important;
+}
+
+html[data-motion="lite"] .parallax-frame__img {
+  transform: scale(1.03) !important;
 }
 
 .parallax-frame__glare {
@@ -148,35 +157,34 @@ body {
     )
     scale(calc(1.08 + var(--p, 0) * 0.2 * var(--mi, 1)));
   opacity: calc(0.64 - var(--p, 0) * 0.36);
-  will-change: transform, opacity;
 }
 
-/* Portrait Mobile Triptych Pan: reveals all 3 vertical columns of the 16:9 video */
+/* Portrait Mobile Triptych Pan: GPU-composited transform-only pan across all 3 columns */
 @media (max-aspect-ratio: 1/1) {
   .hero-video {
     width: 177.78svh !important;
     max-width: none !important;
     height: 100% !important;
     right: 0;
-    animation: triptychPan 16s ease-in-out infinite alternate;
+    left: auto;
+    opacity: 0.58;
+    animation: triptychPan 18s ease-in-out infinite alternate;
   }
 }
 
 @keyframes triptychPan {
   0% {
-    object-position: 15% 50%;
-    translate: 0 0;
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    object-position: 85% 50%;
-    translate: calc(100vw - 177.78svh) 0;
+    transform: translate3d(calc(100vw - 177.78svh), 0, 0);
   }
 }
 
 /* Giant Outlined Architectural Wordmark (PROSHOT) behind Hero Headline */
 .hero-wordmark {
   font-family: var(--font-sans);
-  font-size: clamp(5.2rem, 21vw, 22rem);
+  font-size: clamp(3.8rem, 19vw, 22rem);
   font-weight: 900;
   line-height: 0.85;
   letter-spacing: 0.08em !important;
@@ -187,7 +195,6 @@ body {
     calc(var(--p, 0) * 14vh * var(--mi, 1)),
     0
   );
-  will-change: transform;
   user-select: none;
   pointer-events: none;
 }
@@ -195,7 +202,12 @@ body {
 .hero-copy-layer {
   transform: translate3d(0, calc(var(--p, 0) * -14vh * var(--mi, 1)), 0);
   opacity: calc(1 - var(--p, 0) * 0.72);
-  will-change: transform, opacity;
+}
+
+html[data-motion="lite"] .hero-wordmark,
+html[data-motion="lite"] .hero-copy-layer {
+  transform: none !important;
+  opacity: 1 !important;
 }
 
 /* Word-Masked Split Reveal (Persian-safe) */
@@ -300,53 +312,56 @@ body {
   );
   transform: translate3d(0, calc((0.5 - var(--p, 0.5)) * -48px * var(--mi, 1)), 0)
     scale(calc(1.16 - var(--open, 1) * 0.08));
-  will-change: clip-path, transform;
 }
 
 @media (max-width: 640px) {
   .expand-frame {
-    clip-path: inset(
-      calc((1 - var(--open, 1)) * 5%)
-      calc((1 - var(--open, 1)) * 4%)
-      round calc((1 - var(--open, 1)) * 4px)
-    );
+    clip-path: none;
+    transform: none;
   }
 }
 
 html[data-motion="lite"] .expand-frame {
   clip-path: none !important;
+  transform: none !important;
 }
 
 .scene-line {
   --t: clamp(0, calc((var(--p, 0.5) - var(--start, 0)) * 5), 1);
   opacity: var(--t, 1);
   transform: translate3d(0, calc((1 - var(--t, 1)) * 22px), 0);
-  will-change: opacity, transform;
+}
+
+html[data-motion="lite"] .scene-line {
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 /* Footer Architectural Wordmark Rise */
 .footer-wordmark {
   font-family: var(--font-sans);
-  font-size: clamp(3.5rem, 14vw, 14rem);
+  font-size: clamp(2.35rem, 11vw, 14rem);
   font-weight: 900;
   line-height: 0.85;
   letter-spacing: 0.12em !important;
   color: transparent;
   -webkit-text-stroke: 1px rgba(242, 239, 233, 0.09);
   transform: translate3d(0, calc((1 - var(--p, 1)) * 45px), 0);
-  will-change: transform;
   user-select: none;
   pointer-events: none;
+}
+
+html[data-motion="lite"] .footer-wordmark {
+  transform: none !important;
 }
 
 /* Scroll-Triggered Reveal Animations */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translate3d(0, 36px, 0);
+  transform: translate3d(0, 28px, 0);
   transition:
-    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal-on-scroll.is-visible {
@@ -354,15 +369,17 @@ html[data-motion="lite"] .expand-frame {
   transform: translate3d(0, 0, 0);
 }
 
-/* Image Curtain Unmask on Scroll */
-.curtain-reveal {
-  clip-path: inset(10% 0 10% 0);
-  transition: clip-path 1.1s cubic-bezier(0.16, 1, 0.3, 1);
-}
+/* Image Curtain Unmask on Scroll (desktop only; skip clip-path repaint on touch/lite) */
+@media (hover: hover) and (pointer: fine) {
+  .curtain-reveal {
+    clip-path: inset(10% 0 10% 0);
+    transition: clip-path 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
 
-.is-visible .curtain-reveal,
-.curtain-reveal.is-visible {
-  clip-path: inset(0% 0 0% 0);
+  .is-visible .curtain-reveal,
+  .curtain-reveal.is-visible {
+    clip-path: inset(0% 0 0% 0);
+  }
 }
 
 @keyframes editorialFadeUp {

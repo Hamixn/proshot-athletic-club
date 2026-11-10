@@ -76,7 +76,9 @@ export const ParallaxFrame: React.FC<ParallaxFrameProps> = ({
       <img
         src={src}
         alt={alt}
-        className={`parallax-frame__img absolute inset-0 w-full h-full object-cover will-change-transform transition-opacity duration-500 ${imgClassName}`}
+        loading="lazy"
+        decoding="async"
+        className={`parallax-frame__img absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${imgClassName}`}
       />
 
       {/* Interactive Pointer Spotlight Glare */}

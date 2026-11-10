@@ -81,7 +81,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         {/* =====================================================================
             1. ARCHITECTURAL FULL-BLEED HEADER + SCROLL PROGRESS HAIRLINE
             ===================================================================== */}
-        <header className="sticky top-0 z-50 bg-[#070708]/90 backdrop-blur-md border-b border-[#F2EFE9]/12">
+        <header className="sticky top-0 z-50 bg-[#070708]/95 sm:bg-[#070708]/90 sm:backdrop-blur-md border-b border-[#F2EFE9]/12">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-10 h-16 sm:h-20 flex items-center justify-between gap-4">
             <div className="flex items-center gap-3.5 sm:gap-5 min-w-0">
               <a href="#top" className="flex items-center shrink-0">
@@ -270,9 +270,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           {/* Layer 4: Multi-Plane Editorial Display Typography & Magnetic CTAs */}
           <div className="hero-copy-layer relative z-10 max-w-[1400px] w-full mx-auto px-4 sm:px-10 pt-10 sm:pt-24 pb-10 sm:pb-16 my-auto">
             <div className="max-w-4xl space-y-6 sm:space-y-8">
-              <div className="inline-flex items-center gap-2.5 sm:gap-3 px-3 sm:px-3.5 py-1.5 border border-[#C9A96A]/45 bg-[#0A0A0C]/85 backdrop-blur-xs">
+              <div className="inline-flex items-center gap-2 sm:gap-3 px-2.5 sm:px-3.5 py-1.5 border border-[#C9A96A]/45 bg-[#0A0A0C]/90">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#C9A96A] shrink-0" />
-                <span className="text-[11px] sm:text-xs font-bold text-[#F2EFE9]">
+                <span className="text-[10px] sm:text-xs font-bold text-[#F2EFE9] leading-relaxed">
                   مجموعه باشگاه‌های بدنسازی و تناسب اندام پروشات — شیراز
                 </span>
               </div>
@@ -312,7 +312,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   <button
                     type="button"
                     onClick={() => setIsConsultationOpen(true)}
-                    className="w-full sm:w-auto px-6 py-3.5 h-12 inline-flex items-center justify-center gap-2 rounded-[2px] border border-[#C9A96A]/60 bg-[#070708]/75 backdrop-blur-md text-[#C9A96A] text-xs sm:text-sm font-bold hover:bg-[#C9A96A] hover:text-[#070708] transition-colors cursor-pointer"
+                    className="w-full sm:w-auto px-6 py-3.5 h-12 inline-flex items-center justify-center gap-2 rounded-[2px] border border-[#C9A96A]/60 bg-[#070708]/90 sm:bg-[#070708]/75 sm:backdrop-blur-md text-[#C9A96A] text-xs sm:text-sm font-bold hover:bg-[#C9A96A] hover:text-[#070708] transition-colors cursor-pointer"
                   >
                     <Sparkles className="w-4 h-4 shrink-0" />
                     <span>درخواست مشاوره و بازدید</span>
@@ -347,7 +347,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </div>
 
           {/* Bottom Full-Bleed 5-Branch Quick Bar (Symmetrical 1+2+2 on mobile, 5-col on desktop) */}
-          <div className="relative z-10 border-t border-[#F2EFE9]/15 bg-[#070708]/92 backdrop-blur-md">
+          <div className="relative z-10 border-t border-[#F2EFE9]/15 bg-[#070708]/95 sm:bg-[#070708]/92 sm:backdrop-blur-md">
             <div className="max-w-[1400px] mx-auto grid grid-cols-2 sm:grid-cols-5 divide-y sm:divide-y-0 divide-x divide-x-reverse divide-[#F2EFE9]/12">
               {SHIRAZ_BRANCHES.map((b) => {
                 const active = selectedBranch.id === b.id;
@@ -538,13 +538,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     </span>
                   </div>
 
-                  {/* Secondary Floating Counter-Parallax Inset Window (visible on both mobile & desktop) */}
-                  <div className="relative z-10 mt-auto pt-12 flex items-end justify-between gap-3">
-                    <div className="space-y-1">
+                  {/* Secondary Floating Counter-Parallax Inset Window (responsive sizing on mobile & desktop) */}
+                  <div className="relative z-10 mt-auto pt-8 sm:pt-12 flex items-end justify-between gap-3">
+                    <div className="space-y-1 min-w-0">
                       <span className="text-[11px] sm:text-xs text-[#C9A96A] font-bold block">
                         فضای تمرینی استاندارد
                       </span>
-                      <span className="text-base sm:text-lg font-black text-[#F2EFE9] block">
+                      <span className="text-sm sm:text-lg font-black text-[#F2EFE9] block leading-snug">
                         {selectedBranch.name}
                       </span>
                     </div>
@@ -555,7 +555,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                         alt=""
                         speed={-0.18}
                         enableTilt={false}
-                        className="w-28 h-20 sm:w-44 sm:h-28 border border-[#C9A96A]/55 shadow-2xl"
+                        className="w-24 h-16 sm:w-44 sm:h-28 border border-[#C9A96A]/55 shadow-2xl"
                       />
                     </Parallax>
                   </div>
@@ -761,13 +761,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         <div id="recovery">
           <ScrollScene
             className="border-b border-[#F2EFE9]/12 bg-[#050506]"
-            stickyClassName="flex items-center justify-center py-16 sm:py-24"
+            stickyClassName="flex items-center justify-center py-12 sm:py-24"
           >
             {/* Expanding Architectural Frame (--open 0 -> 1 as section enters viewport) */}
             <div className="expand-frame absolute inset-0 overflow-hidden border border-[#C9A96A]/25">
               <img
                 src={resolveAssetPath('img/spa-jacuzzi.jpg')}
                 alt="مجموعه آبی و ریکاوری باشگاه پروشات شیراز"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover opacity-70"
               />
               <div
@@ -780,7 +782,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </div>
 
             {/* Choreographed Scroll-Driven Copy & Pillars (fully revealed as soon as section enters view) */}
-            <div className="relative z-10 max-w-[1400px] w-full mx-auto px-5 sm:px-12 py-6">
+            <div className="relative z-10 max-w-[1400px] w-full mx-auto px-4 sm:px-12 py-4 sm:py-6">
               <div className="max-w-2xl space-y-4 sm:space-y-6">
                 <span
                   className="scene-line inline-flex items-center gap-2 px-3 py-1 bg-[#070708]/85 border border-[#C9A96A]/45 text-xs font-bold text-[#C9A96A]"
@@ -790,7 +792,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 </span>
 
                 <h3
-                  className="scene-line text-2xl sm:text-5xl font-black text-[#F2EFE9] leading-tight drop-shadow-md"
+                  className="scene-line text-xl sm:text-5xl font-black text-[#F2EFE9] leading-tight drop-shadow-md"
                   style={{ '--start': 0.1 } as React.CSSProperties}
                 >
                   سونا خشک و بخار، جکوزی و حوضچه آب سرد در کنار سالن تمرینی.
@@ -804,30 +806,30 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 </p>
 
                 <div
-                  className="scene-line pt-2 grid grid-cols-3 gap-2.5 sm:gap-4 max-w-lg"
+                  className="scene-line pt-1 sm:pt-2 grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-4 max-w-lg"
                   style={{ '--start': 0.22 } as React.CSSProperties}
                 >
-                  <div className="p-3 sm:p-4 bg-[#070708]/85 border border-[#F2EFE9]/15 backdrop-blur-xs">
+                  <div className="p-3 sm:p-4 bg-[#070708]/90 border border-[#F2EFE9]/15 flex sm:block items-center justify-between gap-2">
                     <span className="text-xs sm:text-sm font-black text-[#C9A96A] block">
                       سونا و جکوزی
                     </span>
-                    <span className="text-[10px] sm:text-xs text-[#8A857B] block mt-0.5">
+                    <span className="text-[11px] sm:text-xs text-[#8A857B] block sm:mt-0.5">
                       حرارت‌درمانی و ریلکسیشن
                     </span>
                   </div>
-                  <div className="p-3 sm:p-4 bg-[#070708]/85 border border-[#F2EFE9]/15 backdrop-blur-xs">
+                  <div className="p-3 sm:p-4 bg-[#070708]/90 border border-[#F2EFE9]/15 flex sm:block items-center justify-between gap-2">
                     <span className="text-xs sm:text-sm font-black text-[#C9A96A] block">
                       حوضچه آب سرد
                     </span>
-                    <span className="text-[10px] sm:text-xs text-[#8A857B] block mt-0.5">
+                    <span className="text-[11px] sm:text-xs text-[#8A857B] block sm:mt-0.5">
                       کاهش التهاب عضلانی
                     </span>
                   </div>
-                  <div className="p-3 sm:p-4 bg-[#070708]/85 border border-[#F2EFE9]/15 backdrop-blur-xs">
+                  <div className="p-3 sm:p-4 bg-[#070708]/90 border border-[#F2EFE9]/15 flex sm:block items-center justify-between gap-2">
                     <span className="text-xs sm:text-sm font-black text-[#C9A96A] block">
                       بوفه تخصصی
                     </span>
-                    <span className="text-[10px] sm:text-xs text-[#8A857B] block mt-0.5">
+                    <span className="text-[11px] sm:text-xs text-[#8A857B] block sm:mt-0.5">
                       پروتئین و تغذیه ورزشی
                     </span>
                   </div>
