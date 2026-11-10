@@ -30,7 +30,7 @@ export const SHIRAZ_BRANCHES: ShirazBranchInfo[] = [
     phoneDisplay: 'هماهنگی از طریق پذیرش مجموعه',
     mapQuery: 'شیراز خیابان سروناز باشگاه پروشات',
     image: 'img/hero-premium.jpg',
-    secondaryImage: 'img/spa-recovery.jpg',
+    secondaryImage: 'img/spa-jacuzzi.jpg',
     facilities: [
       'لاین کامل دستگاه‌های بدنسازی و وزنه آزاد Technogym',
       'سونا خشک، سونا بخار، جکوزی و حوضچه آب سرد',
@@ -74,7 +74,7 @@ export const SHIRAZ_BRANCHES: ShirazBranchInfo[] = [
     phoneDisplay: '۰۷۱-۳۸۴۴۰۱۱۲',
     mapQuery: 'شیراز میدان مطهری مجتمع سلطانیه باشگاه پروشات بانوان',
     image: 'img/studio-lady.jpg',
-    secondaryImage: 'img/spa-recovery.jpg',
+    secondaryImage: 'img/spa-jacuzzi.jpg',
     facilities: [
       'سالن اختصاصی بدنسازی و دستگاه‌های فرم‌دهی بانوان',
       'استودیو کلاس‌های گروهی: TRX، اسپینینگ و پیلاتس دستگاه',
@@ -152,7 +152,7 @@ export const PROSHOT_DISCIPLINES = [
     code: '04',
     title: 'مجموعه آبی و ریکاوری',
     subtitle: 'سونا خشک و بخار، جکوزی و حوضچه آب سرد جهت بازسازی عضلانی پس از تمرین.',
-    image: 'img/spa-recovery.jpg',
+    image: 'img/spa-jacuzzi.jpg',
   },
   {
     code: '05',

@@ -57,9 +57,9 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
       },
       output: {
-        entryFileNames: 'assets/[name].js',
+        entryFileNames: 'assets/[name]-[hash].js',
         chunkFileNames: 'assets/chunks/[name]-[hash].js',
-        assetFileNames: 'assets/[name].[ext]',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
       },
     },
   },

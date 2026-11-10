@@ -766,7 +766,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             {/* Expanding Architectural Frame (--open 0 -> 1 as section enters viewport) */}
             <div className="expand-frame absolute inset-0 overflow-hidden border border-[#C9A96A]/25">
               <img
-                src={resolveAssetPath('img/spa-recovery.jpg')}
+                src={resolveAssetPath('img/spa-jacuzzi.jpg')}
                 alt="مجموعه آبی و ریکاوری باشگاه پروشات شیراز"
                 className="w-full h-full object-cover opacity-70"
               />
