@@ -1,11 +1,19 @@
 import { Member, Membership, MemberPlan, FeedbackItem } from '../types/member';
 import { Branch } from '../types/branch';
+import { isValidIranianMobile, normalizePhone } from './phone';
+import { toLatinDigits } from './jalali';
 
 export class ApiError extends Error {
   constructor(public message: string, public status: number = 500, public data?: any) {
     super(message);
     this.name = 'ApiError';
   }
+}
+
+function isStaticPreviewHost(): boolean {
+  if (typeof window === 'undefined') return false;
+  const { hostname, protocol } = window.location;
+  return hostname.endsWith('github.io') || protocol === 'file:';
 }
 
 // Mock database for local browser preview fallback
@@ -205,20 +213,33 @@ if (typeof window !== 'undefined') {
         ? 'اشتراک ۳ ماهه شعبه پریمیوم (سروناز)'
         : `اشتراک ۳ ماهه شعبه ${found.name}`;
 
-    fetch('/api/v1/me/switch-branch', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ slug }),
-    }).catch(() => {});
+    if (!isStaticPreviewHost()) {
+      fetch('/api/v1/me/switch-branch', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug }),
+      }).catch(() => {});
+    }
   };
 }
 
 function handleMockRequest(endpoint: string, _method: string, _body?: any): any {
   if (endpoint === '/auth/request-otp') {
-    return { success: true, message: 'کد تأیید ارسال شد (کد تستی: ۱۲۳۴۵)' };
+    const rawPhone = String(_body?.phone || '');
+    if (!isValidIranianMobile(rawPhone)) {
+      throw new ApiError('شماره موبایل واردشده معتبر نیست.', 400);
+    }
+    const cleanLocal = toLatinDigits(rawPhone).replace(/^\+98/, '0').replace(/\s+/g, '');
+    mockState.member.mobile = cleanLocal;
+    mockState.member.mobile_normalized = normalizePhone(rawPhone);
+    return { success: true, message: 'کد تأیید ارسال شد (کد پیش‌نمایش: ۱۲۳۴۵)' };
   }
 
   if (endpoint === '/auth/verify-otp') {
+    const code = toLatinDigits(String(_body?.code || '')).trim();
+    if (code !== '12345') {
+      throw new ApiError('کد وارد شده صحیح نیست. در نسخه پیش‌نمایش کد ۱۲۳۴۵ را وارد کنید.', 400);
+    }
     mockState.isLoggedIn = true;
     return {
       success: true,
@@ -226,6 +247,19 @@ function handleMockRequest(endpoint: string, _method: string, _body?: any): any 
       member: mockState.member,
       message: 'ورود موفقیت‌آمیز بود',
     };
+  }
+
+  if (endpoint === '/me/switch-branch') {
+    const slug = String(_body?.slug || 'premium');
+    const found = mockState.branches.find((b) => b.slug === slug) || mockState.branches[0];
+    mockState.membership.branch_id = found.id;
+    mockState.membership.branch = {
+      id: found.id,
+      name: found.name,
+      slug: found.slug,
+      gender_policy: found.gender_policy,
+    };
+    return { success: true, branch: found };
   }
 
   if (endpoint === '/auth/logout') {
@@ -418,6 +452,12 @@ function handleMockRequest(endpoint: string, _method: string, _body?: any): any 
   }
 
   if (endpoint === '/leads' && _method === 'POST') {
+    if (!_body?.full_name || !String(_body.full_name).trim()) {
+      throw new ApiError('لطفاً نام و نام خانوادگی خود را وارد نمایید.', 400);
+    }
+    if (!isValidIranianMobile(String(_body?.mobile || ''))) {
+      throw new ApiError('شماره موبایل واردشده معتبر نیست.', 400);
+    }
     return {
       success: true,
       lead_id: Date.now(),
@@ -448,6 +488,18 @@ export const api = {
   },
 
   async request<T = any>(endpoint: string, options: RequestInit = {}): Promise<T> {
+    const method = options.method || 'GET';
+    const parsedBody = options.body
+      ? typeof options.body === 'string'
+        ? JSON.parse(options.body)
+        : options.body
+      : null;
+
+    // On static preview hosts (GitHub Pages), no Node/SQLite backend is present — run standalone demo state directly
+    if (isStaticPreviewHost()) {
+      return handleMockRequest(endpoint, method, parsedBody) as T;
+    }
+
     const url = `${this.getBaseUrl()}${endpoint}`;
     const headers = new Headers(options.headers || {});
 
@@ -466,6 +518,14 @@ export const api = {
         headers,
       });
 
+      const contentType = response.headers.get('content-type') || '';
+      const isJson = contentType.includes('application/json');
+
+      // Static hosts without an API server return 404/405 HTML pages instead of JSON
+      if (!response.ok && !isJson && (response.status === 404 || response.status === 405 || response.status === 501)) {
+        return handleMockRequest(endpoint, method, parsedBody) as T;
+      }
+
       const data = await response.json().catch(() => ({}));
 
       if (!response.ok) {
@@ -478,13 +538,7 @@ export const api = {
         throw err;
       }
       // Fallback to local state if standalone server is unreachable
-      const method = options.method || 'GET';
-      const body = options.body
-        ? typeof options.body === 'string'
-          ? JSON.parse(options.body)
-          : options.body
-        : null;
-      return handleMockRequest(endpoint, method, body) as T;
+      return handleMockRequest(endpoint, method, parsedBody) as T;
     }
   },
 
