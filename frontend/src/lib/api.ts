@@ -13,7 +13,12 @@ export class ApiError extends Error {
 function isStaticPreviewHost(): boolean {
   if (typeof window === 'undefined') return false;
   const { hostname, protocol } = window.location;
-  return hostname.endsWith('github.io') || protocol === 'file:';
+  return (
+    hostname.endsWith('github.io') ||
+    hostname === 'proshotgym.ir' ||
+    hostname.endsWith('.proshotgym.ir') ||
+    protocol === 'file:'
+  );
 }
 
 // Mock database for local browser preview fallback
