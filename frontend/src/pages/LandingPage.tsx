@@ -971,13 +971,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           ref={footerRef}
           className="relative bg-[#050506] pt-10 sm:pt-16 pb-10 sm:pb-12 text-[11px] sm:text-xs text-[#8A857B] overflow-hidden"
         >
-          <div className="relative z-10 max-w-[1400px] mx-auto px-3.5 sm:px-10 space-y-8 sm:space-y-12">
-            <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-6 pb-6 sm:pb-8 border-b border-[#F2EFE9]/10">
+          <div className="relative z-10 max-w-[1400px] mx-auto px-3.5 sm:px-10 space-y-6 sm:space-y-10">
+            {/* Top Brand Bar */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3.5 sm:gap-6 pb-5 sm:pb-8 border-b border-[#F2EFE9]/10">
               <div className="flex items-center gap-3 sm:gap-4">
                 <BrandLogo variant="main" size="md" />
                 <span className="w-px h-5 bg-[#F2EFE9]/15" />
                 <span className="text-xs sm:text-sm font-black text-[#F2EFE9]">
-                  مجموعه باشگاه‌های ورزشی پروشات — شیراز
+                  کلوب‌های ورزشی پروشات — شیراز
                 </span>
               </div>
 
@@ -985,67 +986,114 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 href="https://www.instagram.com/proshot__gym/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-1.5 sm:px-4 sm:py-2 border border-[#F2EFE9]/20 hover:border-[#C9A96A] text-[#F2EFE9] font-bold transition-colors text-[11px] sm:text-xs"
+                className="w-full sm:w-auto px-3.5 py-2 sm:px-4 sm:py-2 border border-[#C9A96A]/35 bg-[#0C0C10] sm:bg-transparent hover:border-[#C9A96A] text-[#F2EFE9] font-bold transition-colors text-[11px] sm:text-xs inline-flex items-center justify-center gap-2 rounded-[2px]"
                 dir="ltr"
               >
-                Instagram: @proshot__gym
+                <svg className="w-3.5 h-3.5 fill-[#C9A96A]" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                <span>Instagram: @proshot__gym</span>
               </a>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
+            {/* 5-Branch Grid (Symmetrical 1 + 2 + 2 layout on Mobile, 5-col on Desktop) */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-2.5 sm:gap-6">
               {SHIRAZ_BRANCHES.map((b) => (
-                <div key={b.id} className="space-y-1.5 sm:space-y-2 border-r border-[#F2EFE9]/12 pr-3 sm:pr-4">
-                  <span
-                    className="text-xs font-black block"
-                    style={{ color: b.isPremium ? '#C9A96A' : '#F2EFE9' }}
-                  >
-                    {b.name}
-                  </span>
-                  <p className="text-[10px] sm:text-[11px] text-[#8A857B] leading-relaxed">{b.address}</p>
-                  {b.phone ? (
-                    <a
-                      href={`tel:${b.phone}`}
-                      className="text-[11px] sm:text-xs font-bold text-[#F2EFE9] hover:text-[#C9A96A] block pt-0.5 sm:pt-1"
-                      dir="ltr"
-                    >
-                      {b.phoneDisplay}
-                    </a>
-                  ) : (
-                    <span className="text-[10px] sm:text-[11px] text-[#8A857B] block pt-0.5 sm:pt-1">
-                      {b.phoneDisplay}
+                <div
+                  key={b.id}
+                  className={`p-3 sm:p-0 rounded-[2px] sm:rounded-none flex flex-col justify-between space-y-2 sm:space-y-2 sm:border-r sm:border-[#F2EFE9]/12 sm:pr-4 ${
+                    b.isPremium
+                      ? 'col-span-2 sm:col-span-1 bg-[#101014] sm:bg-transparent border border-[#C9A96A]/35 sm:border-0'
+                      : 'bg-[#0B0B0E] sm:bg-transparent border border-[#F2EFE9]/10 sm:border-0'
+                  }`}
+                >
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between gap-1">
+                      <span
+                        className="text-xs font-black block truncate"
+                        style={{ color: b.isPremium ? '#C9A96A' : '#F2EFE9' }}
+                      >
+                        {b.name}
+                      </span>
+                      <span className="text-[9px] font-mono text-[#8A857B]/70" dir="ltr">
+                        0{b.id}
+                      </span>
+                    </div>
+                    <span className="text-[9px] sm:text-[10px] text-[#C9A96A] font-bold block">
+                      {b.genderLabel}
                     </span>
-                  )}
+                    <p className="text-[10px] sm:text-[11px] text-[#8A857B] leading-relaxed line-clamp-2 sm:line-clamp-none">
+                      {b.address}
+                    </p>
+                  </div>
+
+                  <div className="pt-1.5 border-t border-[#F2EFE9]/8 sm:border-0">
+                    {b.phone ? (
+                      <a
+                        href={`tel:${b.phone}`}
+                        className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold text-[#F2EFE9] hover:text-[#C9A96A] transition-colors"
+                        dir="ltr"
+                      >
+                        <Phone className="w-3 h-3 text-[#C9A96A]" />
+                        <span>{b.phoneDisplay}</span>
+                      </a>
+                    ) : (
+                      <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] text-[#8A857B]">
+                        <MapPin className="w-3 h-3 text-[#C9A96A]" />
+                        <span>{b.phoneDisplay}</span>
+                      </span>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
 
+            {/* Quick Navigation Jump Links */}
+            <div className="pt-2 sm:pt-4 flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-2 text-[10px] sm:text-[11px] font-bold text-[#8A857B] border-t border-[#F2EFE9]/8">
+              <a href="#clubs" className="hover:text-[#EDE8DF] transition-colors">شعب پنج‌گانه شیراز</a>
+              <span className="text-[#3A3835]">•</span>
+              <a href="#disciplines" className="hover:text-[#EDE8DF] transition-colors">رشته‌ها و امکانات</a>
+              <span className="text-[#3A3835]">•</span>
+              <a href="#recovery" className="hover:text-[#EDE8DF] transition-colors">مجموعه آبی و ریکاوری</a>
+              <span className="text-[#3A3835]">•</span>
+              <a href="#portal" className="hover:text-[#EDE8DF] transition-colors">پورتال اعضا</a>
+              <span className="text-[#3A3835]">•</span>
+              <button
+                type="button"
+                onClick={() => setIsConsultationOpen(true)}
+                className="hover:text-[#C9A96A] transition-colors cursor-pointer"
+              >
+                مشاوره و بازدید حضوری
+              </button>
+            </div>
+
             {/* Rising Architectural Wordmark */}
-            <div className="pt-3 sm:pt-4 overflow-hidden text-center" dir="ltr" aria-hidden="true">
+            <div className="pt-2 sm:pt-4 overflow-hidden text-center" dir="ltr" aria-hidden="true">
               <span className="footer-wordmark block">PROSHOT SHIRAZ</span>
             </div>
 
-            <div className="pt-5 sm:pt-6 border-t border-[#F2EFE9]/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[10px] sm:text-[11px]">
-              <span>تمامی حقوق برای مجموعه باشگاه‌های ورزشی پروشات (شیراز) محفوظ است.</span>
+            <div className="pt-4 sm:pt-6 border-t border-[#F2EFE9]/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-[10px] sm:text-[11px] text-center sm:text-right">
+              <span>تمامی حقوق برای کلوب‌های ورزشی پروشات (شیراز) محفوظ است.</span>
 
-              <div className="flex flex-wrap items-center gap-3.5 sm:gap-5">
+              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-5">
                 <button
                   type="button"
                   onClick={() => onNavigate('member', 'premium')}
-                  className="hover:text-[#C9A96A] transition-colors cursor-pointer"
+                  className="px-2.5 py-1 bg-[#121216] sm:bg-transparent border border-[#C9A96A]/30 sm:border-0 text-[#C9A96A] hover:underline transition-colors cursor-pointer rounded-[2px]"
                 >
                   پورتال شعبه پریمیوم
                 </button>
                 <button
                   type="button"
                   onClick={() => onNavigate('member', 'plus-men')}
-                  className="hover:text-[#F2EFE9] transition-colors cursor-pointer"
+                  className="px-2.5 py-1 bg-[#121216] sm:bg-transparent border border-[#F2EFE9]/15 sm:border-0 hover:text-[#F2EFE9] transition-colors cursor-pointer rounded-[2px]"
                 >
                   پورتال سایر شعب
                 </button>
                 <button
                   type="button"
                   onClick={() => onNavigate('staff', selectedBranch.slug)}
-                  className="text-[#57534B] hover:text-[#8A857B] transition-colors cursor-pointer"
+                  className="px-2.5 py-1 bg-[#121216] sm:bg-transparent border border-[#F2EFE9]/15 sm:border-0 text-[#57534B] hover:text-[#8A857B] transition-colors cursor-pointer rounded-[2px]"
                 >
                   ورود پرسنل پذیرش
                 </button>
