@@ -129,9 +129,9 @@ export const StaffCheckin: React.FC<StaffCheckinProps> = ({ onBackToSite }) => {
         onBackToSite={onBackToSite}
       />
 
-      <main className="max-w-3xl mx-auto px-5 py-7 space-y-6">
+      <main className="max-w-3xl mx-auto px-4 sm:px-5 py-5 sm:py-7 space-y-5 sm:space-y-6">
         {/* Clean Architectural Branch Selector Bar */}
-        <div className="p-6 rounded-[3px] border border-[#EDE8DF]/12 bg-[#111113] flex flex-wrap items-center justify-between gap-4">
+        <div className="p-4 sm:p-6 rounded-[3px] border border-[#EDE8DF]/12 bg-[#111113] flex flex-wrap items-center justify-between gap-3 sm:gap-4">
           <div>
             <span
               className="text-[11px] font-bold block mb-1"

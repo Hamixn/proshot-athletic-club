@@ -82,8 +82,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             1. ARCHITECTURAL FULL-BLEED HEADER + SCROLL PROGRESS HAIRLINE
             ===================================================================== */}
         <header className="sticky top-0 z-50 bg-[#070708]/95 sm:bg-[#070708]/90 sm:backdrop-blur-md border-b border-[#F2EFE9]/12">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-10 h-16 sm:h-20 flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3.5 sm:gap-5 min-w-0">
+          <div className="max-w-[1400px] mx-auto px-3.5 sm:px-10 h-14 sm:h-20 flex items-center justify-between gap-3 sm:gap-4">
+            <div className="flex items-center gap-3 sm:gap-5 min-w-0">
               <a href="#top" className="flex items-center shrink-0">
                 <BrandLogo
                   branchSlug={selectedBranch.slug}
@@ -137,7 +137,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden w-9 h-9 flex items-center justify-center border border-[#F2EFE9]/15 text-[#F2EFE9] active:bg-[#16161A]"
+                className="md:hidden w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center border border-[#F2EFE9]/15 text-[#F2EFE9] active:bg-[#16161A]"
                 aria-label="منو"
               >
                 {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -221,7 +221,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         <section
           id="top"
           ref={heroRef}
-          className="relative min-h-[88svh] sm:min-h-[90vh] border-b border-[#F2EFE9]/12 flex flex-col justify-between overflow-hidden"
+          className="relative min-h-[82svh] sm:min-h-[90vh] border-b border-[#F2EFE9]/12 flex flex-col justify-between overflow-hidden"
         >
           {/* Layer 0: Scroll & Pointer Parallax Cinema Video (with Portrait Mobile Triptych Pan) */}
           <div className="absolute inset-0 z-0 overflow-hidden">
@@ -268,11 +268,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </div>
 
           {/* Layer 4: Multi-Plane Editorial Display Typography & Magnetic CTAs */}
-          <div className="hero-copy-layer relative z-10 max-w-[1400px] w-full mx-auto px-4 sm:px-10 pt-10 sm:pt-24 pb-10 sm:pb-16 my-auto">
-            <div className="max-w-4xl space-y-6 sm:space-y-8">
-              <div className="inline-flex items-center gap-2 sm:gap-3 px-2.5 sm:px-3.5 py-1.5 border border-[#C9A96A]/45 bg-[#0A0A0C]/90">
+          <div className="hero-copy-layer relative z-10 max-w-[1400px] w-full mx-auto px-3.5 sm:px-10 pt-4 sm:pt-24 pb-3 sm:pb-16 my-auto">
+            <div className="max-w-4xl space-y-3 sm:space-y-8">
+              <div className="inline-flex items-center gap-1.5 sm:gap-3 px-2 sm:px-3.5 py-1 sm:py-1.5 border border-[#C9A96A]/45 bg-[#0A0A0C]/90">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#C9A96A] shrink-0" />
-                <span className="text-[10px] sm:text-xs font-bold text-[#F2EFE9] leading-relaxed">
+                <span className="text-[9px] sm:text-xs font-bold text-[#F2EFE9] leading-relaxed">
                   مجموعه باشگاه‌های بدنسازی و تناسب اندام پروشات — شیراز
                 </span>
               </div>
@@ -280,7 +280,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <div className="space-y-1">
                 <SplitReveal
                   fullText="استاندارد حرفه‌ای بدنسازی در شیراز."
-                  className="text-3xl sm:text-6xl lg:text-7xl font-black text-[#F2EFE9] leading-[1.18] sm:leading-[1.12] drop-shadow-lg"
+                  className="text-2xl sm:text-6xl lg:text-7xl font-black text-[#F2EFE9] leading-[1.2] sm:leading-[1.12] drop-shadow-lg"
                   words={[
                     { t: 'استاندارد' },
                     { t: 'حرفه‌ای', br: true },
@@ -292,34 +292,49 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </div>
 
               <Parallax speed={-18}>
-                <p className="text-xs sm:text-lg text-[#F2EFE9]/85 max-w-2xl leading-7 sm:leading-8 font-normal">
+                <p className="text-[11px] sm:text-lg text-[#F2EFE9]/85 max-w-2xl leading-5 sm:leading-8 font-normal line-clamp-3 sm:line-clamp-none">
                   پنج شعبه تخصصی ویژه آقایان و بانوان در شیراز؛ مجهز به دستگاه‌های بدنسازی استاندارد، استودیوهای فیتنس، TRX، اسپینینگ و پیلاتس، مجموعه آبی و سامانه دیجیتال برنامه تمرینی و تغذیه.
                 </p>
               </Parallax>
 
-              {/* Responsive Thumb-Friendly CTA Row */}
-              <div className="pt-1 sm:pt-2 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4">
-                <Magnetic className="w-full sm:w-auto">
-                  <a
-                    href="#clubs"
-                    className="w-full sm:w-auto px-7 py-3.5 h-12 inline-flex items-center justify-center rounded-[2px] bg-[#C9A96A] hover:bg-[#DFC690] text-[#070708] text-xs sm:text-sm font-extrabold transition-colors"
-                  >
-                    انتخاب شعبه و مشاهده آدرس‌ها
-                  </a>
-                </Magnetic>
+              {/* Responsive Thumb-Friendly CTA Row (Compact on Mobile, Reveals Background Video) */}
+              <div className="pt-0.5 sm:pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4">
+                <div className="flex items-center gap-2 w-full sm:w-auto">
+                  <Magnetic className="flex-1 sm:flex-initial">
+                    <a
+                      href="#clubs"
+                      className="w-full sm:w-auto px-3 sm:px-7 py-2 sm:py-3.5 h-9 sm:h-12 inline-flex items-center justify-center rounded-[2px] bg-[#C9A96A] hover:bg-[#DFC690] text-[#070708] text-[11px] sm:text-sm font-extrabold transition-colors text-center whitespace-nowrap"
+                    >
+                      انتخاب شعبه و آدرس‌ها
+                    </a>
+                  </Magnetic>
 
-                <Magnetic className="w-full sm:w-auto">
+                  <Magnetic className="flex-1 sm:flex-initial">
+                    <button
+                      type="button"
+                      onClick={() => setIsConsultationOpen(true)}
+                      className="w-full sm:w-auto px-2.5 sm:px-6 py-2 sm:py-3.5 h-9 sm:h-12 inline-flex items-center justify-center gap-1 sm:gap-2 rounded-[2px] border border-[#C9A96A]/60 bg-[#070708]/90 sm:bg-[#070708]/75 sm:backdrop-blur-md text-[#C9A96A] text-[11px] sm:text-sm font-bold hover:bg-[#C9A96A] hover:text-[#070708] transition-colors cursor-pointer text-center whitespace-nowrap"
+                    >
+                      <Sparkles className="w-3.5 h-3.5 shrink-0" />
+                      <span>درخواست مشاوره</span>
+                    </button>
+                  </Magnetic>
+                </div>
+
+                {/* Mobile Inline Portal Link */}
+                <div className="w-full sm:hidden pt-0.5 text-center">
                   <button
                     type="button"
-                    onClick={() => setIsConsultationOpen(true)}
-                    className="w-full sm:w-auto px-6 py-3.5 h-12 inline-flex items-center justify-center gap-2 rounded-[2px] border border-[#C9A96A]/60 bg-[#070708]/90 sm:bg-[#070708]/75 sm:backdrop-blur-md text-[#C9A96A] text-xs sm:text-sm font-bold hover:bg-[#C9A96A] hover:text-[#070708] transition-colors cursor-pointer"
+                    onClick={() => onNavigate('member', selectedBranch.slug)}
+                    className="inline-flex items-center gap-1 text-[11px] text-[#EDE8DF]/75 hover:text-[#C9A96A] transition-colors cursor-pointer"
                   >
-                    <Sparkles className="w-4 h-4 shrink-0" />
-                    <span>درخواست مشاوره و بازدید</span>
+                    <span>ورود به پورتال دیجیتال اعضا</span>
+                    <ArrowUpLeft className="w-3.5 h-3.5 text-[#C9A96A]" />
                   </button>
-                </Magnetic>
+                </div>
 
-                <Magnetic className="w-full sm:w-auto">
+                {/* Desktop Full Portal Button */}
+                <Magnetic className="hidden sm:inline-block w-full sm:w-auto">
                   <Button
                     variant="outline"
                     size="lg"
@@ -356,22 +371,22 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     key={b.id}
                     href="#clubs"
                     onClick={() => handleBranchSelect(b, true)}
-                    className={`px-4 sm:px-5 py-3.5 sm:py-4 block transition-colors relative ${
+                    className={`px-2.5 sm:px-5 py-2 sm:py-4 block transition-colors relative ${
                       b.isPremium ? 'col-span-2 sm:col-span-1' : ''
                     } ${active ? 'bg-[#141418]' : 'hover:bg-[#0D0D10]'}`}
                   >
-                    <div className="flex items-center justify-between gap-2 mb-0.5">
+                    <div className="flex items-center justify-between gap-1.5 sm:gap-2 mb-0.5">
                       <span
-                        className="text-[10px] sm:text-[11px] font-bold block truncate"
+                        className="text-[9px] sm:text-[11px] font-bold block truncate"
                         style={{ color: b.isPremium ? '#C9A96A' : '#8A857B' }}
                       >
                         {b.district}
                       </span>
-                      <span className="text-[10px] font-mono text-[#8A857B]/70" dir="ltr">
+                      <span className="text-[9px] sm:text-[10px] font-mono text-[#8A857B]/70" dir="ltr">
                         0{b.id}
                       </span>
                     </div>
-                    <span className="text-xs sm:text-sm font-black text-[#F2EFE9] block">
+                    <span className="text-[11px] sm:text-sm font-black text-[#F2EFE9] block truncate">
                       {b.shortName}
                     </span>
                     {active && (
@@ -433,17 +448,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </span>
           </Parallax>
 
-          <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-10 py-14 sm:py-28 space-y-8 sm:space-y-12">
-            <RevealBlock className="flex flex-wrap items-end justify-between gap-4 sm:gap-6 pb-6 sm:pb-8 border-b border-[#F2EFE9]/12">
+          <div className="relative z-10 max-w-[1400px] mx-auto px-3.5 sm:px-10 py-10 sm:py-28 space-y-6 sm:space-y-12">
+            <RevealBlock className="flex flex-wrap items-end justify-between gap-3 sm:gap-6 pb-4 sm:pb-8 border-b border-[#F2EFE9]/12">
               <div>
-                <span className="text-xs font-bold text-[#C9A96A] block mb-2">
+                <span className="text-[11px] sm:text-xs font-bold text-[#C9A96A] block mb-1.5 sm:mb-2">
                   شعب مجموعه ورزشی پروشات در شیراز
                 </span>
-                <h2 className="text-2xl sm:text-5xl font-black text-[#F2EFE9]">
+                <h2 className="text-xl sm:text-5xl font-black text-[#F2EFE9]">
                   پنج شعبه در نقاط اصلی شیراز
                 </h2>
               </div>
-              <p className="text-xs sm:text-sm text-[#8A857B] max-w-md leading-7">
+              <p className="text-[11px] sm:text-sm text-[#8A857B] max-w-md leading-6 sm:leading-7">
                 شعبه مورد نظر خود را انتخاب کنید تا نشانی دقیق، شماره تماس مستقیم، تصاویر، امکانات و ورودی پورتال همان شعبه را مشاهده نمایید.
               </p>
             </RevealBlock>
@@ -457,7 +472,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     key={branch.id}
                     type="button"
                     onClick={() => handleBranchSelect(branch, true)}
-                    className={`p-3.5 sm:p-5 text-right transition-colors relative cursor-pointer ${
+                    className={`p-2.5 sm:p-5 text-right transition-colors relative cursor-pointer ${
                       branch.isPremium ? 'col-span-2 sm:col-span-1' : ''
                     } ${
                       active
@@ -465,23 +480,23 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                         : 'text-[#8A857B] hover:text-[#F2EFE9] hover:bg-[#101013]'
                     }`}
                   >
-                    <div className="flex items-center justify-between gap-2 mb-1">
+                    <div className="flex items-center justify-between gap-1 mb-0.5">
                       <span
-                        className="text-[10px] sm:text-[11px] font-bold block truncate"
+                        className="text-[9px] sm:text-[11px] font-bold block truncate"
                         style={{
                           color: branch.isPremium ? '#C9A96A' : active ? '#F2EFE9' : '#8A857B',
                         }}
                       >
                         {branch.genderLabel}
                       </span>
-                      <span className="text-[10px] font-mono text-[#8A857B]" dir="ltr">
+                      <span className="text-[9px] sm:text-[10px] font-mono text-[#8A857B]" dir="ltr">
                         0{branch.id}
                       </span>
                     </div>
-                    <span className="text-xs sm:text-base font-black block">
+                    <span className="text-[11px] sm:text-base font-black block truncate">
                       {branch.shortName}
                     </span>
-                    <span className="text-[11px] text-[#8A857B] block mt-0.5 sm:mt-1 truncate">
+                    <span className="text-[10px] sm:text-[11px] text-[#8A857B] block mt-0.5 sm:mt-1 truncate">
                       {branch.district}
                     </span>
                     {active && (
@@ -503,14 +518,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               {/* Photo Column First on Mobile (order-1 lg:order-2) so tapping a tab immediately shows the wipe */}
               <div
                 key={`photo-${selectedBranch.slug}`}
-                className="order-1 lg:order-2 lg:col-span-6 relative min-h-[300px] sm:min-h-[480px] bg-[#070708] p-4 sm:p-8 flex flex-col justify-between overflow-hidden branch-wipe"
+                className="order-1 lg:order-2 lg:col-span-6 relative min-h-[220px] sm:min-h-[480px] bg-[#070708] p-3 sm:p-8 flex flex-col justify-between overflow-hidden branch-wipe"
               >
                 <ParallaxFrame
                   src={resolveAssetPath(selectedBranch.image)}
                   alt={selectedBranch.name}
                   speed={0.28}
                   enableTilt={true}
-                  className="w-full h-full min-h-[270px] sm:min-h-[420px] border border-[#F2EFE9]/15 flex flex-col justify-between p-4 sm:p-6"
+                  className="w-full h-full min-h-[200px] sm:min-h-[420px] border border-[#F2EFE9]/15 flex flex-col justify-between p-3 sm:p-6"
                 >
                   <div
                     className="absolute inset-0 pointer-events-none"
@@ -521,11 +536,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   />
 
                   <div className="relative z-10 flex items-center justify-between gap-2">
-                    <span className="px-2.5 sm:px-3 py-1 bg-[#070708]/85 border border-[#F2EFE9]/15 text-[11px] sm:text-xs font-bold text-[#F2EFE9]">
+                    <span className="px-2 sm:px-3 py-0.5 sm:py-1 bg-[#070708]/85 border border-[#F2EFE9]/15 text-[10px] sm:text-xs font-bold text-[#F2EFE9]">
                       {selectedBranch.district}
                     </span>
                     <span
-                      className="text-[11px] sm:text-xs font-black px-2.5 sm:px-3 py-1 bg-[#070708]/85 border"
+                      className="text-[10px] sm:text-xs font-black px-2 sm:px-3 py-0.5 sm:py-1 bg-[#070708]/85 border"
                       style={{
                         color: accentColor,
                         borderColor: isSelectedPremium
@@ -539,12 +554,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   </div>
 
                   {/* Secondary Floating Counter-Parallax Inset Window (responsive sizing on mobile & desktop) */}
-                  <div className="relative z-10 mt-auto pt-8 sm:pt-12 flex items-end justify-between gap-3">
-                    <div className="space-y-1 min-w-0">
-                      <span className="text-[11px] sm:text-xs text-[#C9A96A] font-bold block">
+                  <div className="relative z-10 mt-auto pt-6 sm:pt-12 flex items-end justify-between gap-2 sm:gap-3">
+                    <div className="space-y-0.5 sm:space-y-1 min-w-0">
+                      <span className="text-[10px] sm:text-xs text-[#C9A96A] font-bold block">
                         فضای تمرینی استاندارد
                       </span>
-                      <span className="text-sm sm:text-lg font-black text-[#F2EFE9] block leading-snug">
+                      <span className="text-xs sm:text-lg font-black text-[#F2EFE9] block leading-snug truncate">
                         {selectedBranch.name}
                       </span>
                     </div>
@@ -555,7 +570,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                         alt=""
                         speed={-0.18}
                         enableTilt={false}
-                        className="w-24 h-16 sm:w-44 sm:h-28 border border-[#C9A96A]/55 shadow-2xl"
+                        className="w-20 h-14 sm:w-44 sm:h-28 border border-[#C9A96A]/55 shadow-2xl"
                       />
                     </Parallax>
                   </div>
@@ -565,18 +580,18 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               {/* Details Column (order-2 lg:order-1) */}
               <div
                 key={`details-${selectedBranch.slug}`}
-                className="order-2 lg:order-1 lg:col-span-6 p-5 sm:p-10 flex flex-col justify-between space-y-6 sm:space-y-8 border-t lg:border-t-0 lg:border-l border-[#F2EFE9]/12 animate-editorial"
+                className="order-2 lg:order-1 lg:col-span-6 p-4 sm:p-10 flex flex-col justify-between space-y-5 sm:space-y-8 border-t lg:border-t-0 lg:border-l border-[#F2EFE9]/12 animate-editorial"
               >
-                <div className="space-y-6">
-                  <div className="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-[#F2EFE9]/10">
+                <div className="space-y-5 sm:space-y-6">
+                  <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4 pb-4 sm:pb-5 border-b border-[#F2EFE9]/10">
                     <div>
                       <span
-                        className="text-xs font-bold block mb-1"
+                        className="text-[11px] sm:text-xs font-bold block mb-0.5 sm:mb-1"
                         style={{ color: accentColor }}
                       >
                         {selectedBranch.genderLabel}
                       </span>
-                      <h3 className="text-xl sm:text-4xl font-black text-[#F2EFE9]">
+                      <h3 className="text-lg sm:text-4xl font-black text-[#F2EFE9]">
                         {selectedBranch.name}
                       </h3>
                     </div>
@@ -589,13 +604,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   </div>
 
                   {/* Address & Direct Phone */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 py-1 sm:py-2">
-                    <div className="space-y-1.5">
-                      <span className="text-xs text-[#8A857B] flex items-center gap-1.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 py-1 sm:py-2">
+                    <div className="space-y-1">
+                      <span className="text-[11px] sm:text-xs text-[#8A857B] flex items-center gap-1.5">
                         <MapPin className="w-3.5 h-3.5 text-[#C9A96A]" />
                         نشانی در شیراز
                       </span>
-                      <p className="text-xs sm:text-sm font-bold text-[#F2EFE9] leading-relaxed">
+                      <p className="text-[11px] sm:text-sm font-bold text-[#F2EFE9] leading-relaxed">
                         {selectedBranch.address}
                       </p>
                       <a
@@ -604,22 +619,22 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                         )}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs font-bold text-[#C9A96A] hover:underline pt-1"
+                        className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold text-[#C9A96A] hover:underline pt-0.5"
                       >
                         <span>مسیریابی روی نقشه</span>
                         <ArrowUpLeft className="w-3.5 h-3.5" />
                       </a>
                     </div>
 
-                    <div className="space-y-1.5">
-                      <span className="text-xs text-[#8A857B] flex items-center gap-1.5">
+                    <div className="space-y-1">
+                      <span className="text-[11px] sm:text-xs text-[#8A857B] flex items-center gap-1.5">
                         <Phone className="w-3.5 h-3.5 text-[#C9A96A]" />
                         تلفن پذیرش شعبه
                       </span>
                       {selectedBranch.phone ? (
                         <a
                           href={`tel:${selectedBranch.phone}`}
-                          className="text-lg sm:text-xl font-black text-[#F2EFE9] hover:text-[#C9A96A] transition-colors block"
+                          className="text-base sm:text-xl font-black text-[#F2EFE9] hover:text-[#C9A96A] transition-colors block"
                           dir="ltr"
                         >
                           {selectedBranch.phoneDisplay}
@@ -629,28 +644,28 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                           {selectedBranch.phoneDisplay}
                         </span>
                       )}
-                      <span className="text-[11px] text-[#8A857B] block">
+                      <span className="text-[10px] sm:text-[11px] text-[#8A857B] block">
                         پاسخگویی در ساعات فعالیت مجموعه
                       </span>
                     </div>
                   </div>
 
                   {/* Branch Facilities List */}
-                  <div className="pt-4 border-t border-[#F2EFE9]/10 space-y-3">
-                    <span className="text-xs font-bold text-[#8A857B] block">
+                  <div className="pt-3 sm:pt-4 border-t border-[#F2EFE9]/10 space-y-2.5 sm:space-y-3">
+                    <span className="text-[11px] sm:text-xs font-bold text-[#8A857B] block">
                       امکانات و خدمات این شعبه:
                     </span>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+                    <div className="grid grid-cols-2 gap-2 sm:gap-3">
                       {selectedBranch.facilities.map((item, idx) => (
                         <div
                           key={idx}
-                          className="p-3 sm:p-3.5 bg-[#070708] border border-[#F2EFE9]/10 text-xs font-bold text-[#F2EFE9] flex items-center gap-2.5"
+                          className="p-2 sm:p-3.5 bg-[#070708] border border-[#F2EFE9]/10 text-[10px] sm:text-xs font-bold text-[#F2EFE9] flex items-center gap-2"
                         >
                           <span
                             className="w-1.5 h-1.5 rounded-full shrink-0"
                             style={{ backgroundColor: accentColor }}
                           />
-                          <span>{item}</span>
+                          <span className="truncate">{item}</span>
                         </div>
                       ))}
                     </div>
@@ -658,11 +673,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 </div>
 
                 {/* Portal & Tour Actions for Selected Branch */}
-                <div className="pt-5 sm:pt-6 border-t border-[#F2EFE9]/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
+                <div className="pt-4 sm:pt-6 border-t border-[#F2EFE9]/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-4">
                   <button
                     type="button"
                     onClick={() => setIsConsultationOpen(true)}
-                    className="px-4 py-3 border border-[#C9A96A]/45 text-[#C9A96A] text-xs font-bold hover:bg-[#C9A96A] hover:text-[#070708] transition-colors cursor-pointer text-center"
+                    className="px-3.5 py-2.5 sm:px-4 sm:py-3 border border-[#C9A96A]/45 text-[#C9A96A] text-[11px] sm:text-xs font-bold hover:bg-[#C9A96A] hover:text-[#070708] transition-colors cursor-pointer text-center"
                   >
                     هماهنگی بازدید از {selectedBranch.shortName}
                   </button>
@@ -670,9 +685,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   <Button
                     variant="primary"
                     size="md"
-                    className="w-full sm:w-auto"
+                    className="w-full sm:w-auto text-xs sm:text-sm py-2.5 sm:py-3"
                     onClick={() => onNavigate('member', selectedBranch.slug)}
-                    icon={<ArrowUpLeft className="w-4 h-4" />}
+                    icon={<ArrowUpLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
                   >
                     ورود به پورتال {selectedBranch.shortName}
                   </Button>
@@ -686,22 +701,22 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             4. DISCIPLINES & AMENITIES (Staggered Column Parallax + 3D Tilt Grid)
             ===================================================================== */}
         <section id="disciplines" className="border-b border-[#F2EFE9]/12 bg-[#09090B] overflow-hidden">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-10 py-16 sm:py-28 space-y-10 sm:space-y-14">
-            <RevealBlock className="flex flex-wrap items-end justify-between gap-4 sm:gap-6">
+          <div className="max-w-[1400px] mx-auto px-3.5 sm:px-10 py-10 sm:py-28 space-y-8 sm:space-y-14">
+            <RevealBlock className="flex flex-wrap items-end justify-between gap-3 sm:gap-6">
               <div>
-                <span className="text-xs font-bold text-[#C9A96A] block mb-2">
+                <span className="text-[11px] sm:text-xs font-bold text-[#C9A96A] block mb-1.5 sm:mb-2">
                   رشته‌های ورزشی و امکانات مجموعه
                 </span>
-                <h2 className="text-2xl sm:text-5xl font-black text-[#F2EFE9]">
+                <h2 className="text-xl sm:text-5xl font-black text-[#F2EFE9]">
                   تجهیزات استاندارد، مربیان متخصص
                 </h2>
               </div>
-              <p className="text-xs sm:text-sm text-[#8A857B] max-w-md leading-7">
+              <p className="text-[11px] sm:text-sm text-[#8A857B] max-w-md leading-6 sm:leading-7">
                 تمامی شعب پروشات در شیراز با تمرکز بر کیفیت دستگاه‌ها، تهویه استاندارد و برنامه‌ریزی علمی تمرین و تغذیه تجهیز شده‌اند.
               </p>
             </RevealBlock>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {PROSHOT_DISCIPLINES.map((item, idx) => {
                 // Differential column parallax speeds create an editorial staggered rhythm
                 const colSpeed = (idx % 3) * 18;
@@ -715,7 +730,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                         enableTilt={true}
                         curtainReveal={true}
                         imgClassName="opacity-50 group-hover:opacity-70"
-                        className="group h-72 sm:h-80 border border-[#F2EFE9]/15 bg-[#070708] p-6 sm:p-8 flex flex-col justify-between"
+                        className="group h-56 sm:h-80 border border-[#F2EFE9]/15 bg-[#070708] p-4 sm:p-8 flex flex-col justify-between"
                       >
                         <div
                           className="absolute inset-0 pointer-events-none"
@@ -738,11 +753,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                           <span className="w-8 h-px bg-[#C9A96A]/50 block" />
                         </Parallax>
 
-                        <div className="relative z-10 space-y-2">
-                          <h3 className="text-lg sm:text-2xl font-black text-[#F2EFE9]">
+                        <div className="relative z-10 space-y-1.5 sm:space-y-2">
+                          <h3 className="text-base sm:text-2xl font-black text-[#F2EFE9]">
                             {item.title}
                           </h3>
-                          <p className="text-xs sm:text-sm text-[#F2EFE9]/80 leading-7">
+                          <p className="text-[11px] sm:text-sm text-[#F2EFE9]/80 leading-5 sm:leading-7">
                             {item.subtitle}
                           </p>
                         </div>
@@ -761,7 +776,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         <div id="recovery">
           <ScrollScene
             className="border-b border-[#F2EFE9]/12 bg-[#050506]"
-            stickyClassName="flex items-center justify-center py-12 sm:py-24"
+            stickyClassName="flex items-center justify-center py-8 sm:py-24"
           >
             {/* Expanding Architectural Frame (--open 0 -> 1 as section enters viewport) */}
             <div className="expand-frame absolute inset-0 overflow-hidden border border-[#C9A96A]/25">
@@ -782,54 +797,54 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </div>
 
             {/* Choreographed Scroll-Driven Copy & Pillars (fully revealed as soon as section enters view) */}
-            <div className="relative z-10 max-w-[1400px] w-full mx-auto px-4 sm:px-12 py-4 sm:py-6">
-              <div className="max-w-2xl space-y-4 sm:space-y-6">
+            <div className="relative z-10 max-w-[1400px] w-full mx-auto px-3.5 sm:px-12 py-3 sm:py-6">
+              <div className="max-w-2xl space-y-3 sm:space-y-6">
                 <span
-                  className="scene-line inline-flex items-center gap-2 px-3 py-1 bg-[#070708]/85 border border-[#C9A96A]/45 text-xs font-bold text-[#C9A96A]"
+                  className="scene-line inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 bg-[#070708]/85 border border-[#C9A96A]/45 text-[10px] sm:text-xs font-bold text-[#C9A96A]"
                   style={{ '--start': 0.04 } as React.CSSProperties}
                 >
                   ریکاوری و بازسازی عضلانی پس از تمرین
                 </span>
 
                 <h3
-                  className="scene-line text-xl sm:text-5xl font-black text-[#F2EFE9] leading-tight drop-shadow-md"
+                  className="scene-line text-lg sm:text-5xl font-black text-[#F2EFE9] leading-tight drop-shadow-md"
                   style={{ '--start': 0.1 } as React.CSSProperties}
                 >
                   سونا خشک و بخار، جکوزی و حوضچه آب سرد در کنار سالن تمرینی.
                 </h3>
 
                 <p
-                  className="scene-line text-xs sm:text-base text-[#F2EFE9]/90 leading-7 sm:leading-8 drop-shadow-xs"
+                  className="scene-line text-[11px] sm:text-base text-[#F2EFE9]/90 leading-6 sm:leading-8 drop-shadow-xs"
                   style={{ '--start': 0.16 } as React.CSSProperties}
                 >
                   ترکیب تمرینات قدرتی با پروتکل‌های ریکاوری استاندارد و کافی‌شاپ تخصصی ورزشی برای به حداکثر رساندن بازدهی هر جلسه تمرین در شعب پروشات شیراز.
                 </p>
 
                 <div
-                  className="scene-line pt-1 sm:pt-2 grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-4 max-w-lg"
+                  className="scene-line pt-1 sm:pt-2 grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 max-w-lg"
                   style={{ '--start': 0.22 } as React.CSSProperties}
                 >
-                  <div className="p-3 sm:p-4 bg-[#070708]/90 border border-[#F2EFE9]/15 flex sm:block items-center justify-between gap-2">
+                  <div className="p-2.5 sm:p-4 bg-[#070708]/90 border border-[#F2EFE9]/15 flex sm:block items-center justify-between gap-2">
                     <span className="text-xs sm:text-sm font-black text-[#C9A96A] block">
                       سونا و جکوزی
                     </span>
-                    <span className="text-[11px] sm:text-xs text-[#8A857B] block sm:mt-0.5">
+                    <span className="text-[10px] sm:text-xs text-[#8A857B] block sm:mt-0.5">
                       حرارت‌درمانی و ریلکسیشن
                     </span>
                   </div>
-                  <div className="p-3 sm:p-4 bg-[#070708]/90 border border-[#F2EFE9]/15 flex sm:block items-center justify-between gap-2">
+                  <div className="p-2.5 sm:p-4 bg-[#070708]/90 border border-[#F2EFE9]/15 flex sm:block items-center justify-between gap-2">
                     <span className="text-xs sm:text-sm font-black text-[#C9A96A] block">
                       حوضچه آب سرد
                     </span>
-                    <span className="text-[11px] sm:text-xs text-[#8A857B] block sm:mt-0.5">
+                    <span className="text-[10px] sm:text-xs text-[#8A857B] block sm:mt-0.5">
                       کاهش التهاب عضلانی
                     </span>
                   </div>
-                  <div className="p-3 sm:p-4 bg-[#070708]/90 border border-[#F2EFE9]/15 flex sm:block items-center justify-between gap-2">
+                  <div className="p-2.5 sm:p-4 bg-[#070708]/90 border border-[#F2EFE9]/15 flex sm:block items-center justify-between gap-2">
                     <span className="text-xs sm:text-sm font-black text-[#C9A96A] block">
                       بوفه تخصصی
                     </span>
-                    <span className="text-[11px] sm:text-xs text-[#8A857B] block sm:mt-0.5">
+                    <span className="text-[10px] sm:text-xs text-[#8A857B] block sm:mt-0.5">
                       پروتئین و تغذیه ورزشی
                     </span>
                   </div>
@@ -843,22 +858,22 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             5. DIGITAL MEMBER PORTAL SECTION (Multi-Plane Brass Hairline Frames)
             ===================================================================== */}
         <section id="portal" className="border-b border-[#F2EFE9]/12 bg-[#070708] overflow-hidden">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-10 py-16 sm:py-28">
+          <div className="max-w-[1400px] mx-auto px-3.5 sm:px-10 py-10 sm:py-28">
             <RevealBlock className="grid grid-cols-1 lg:grid-cols-12 border border-[#C9A96A]/40 bg-[#0C0C0E]">
-              <div className="lg:col-span-7 p-6 sm:p-12 flex flex-col justify-between space-y-8 border-b lg:border-b-0 lg:border-l border-[#F2EFE9]/12">
-                <div className="space-y-5">
-                  <span className="text-xs font-bold text-[#C9A96A] block">
+              <div className="lg:col-span-7 p-4 sm:p-12 flex flex-col justify-between space-y-6 sm:space-y-8 border-b lg:border-b-0 lg:border-l border-[#F2EFE9]/12">
+                <div className="space-y-4 sm:space-y-5">
+                  <span className="text-[11px] sm:text-xs font-bold text-[#C9A96A] block">
                     سامانه یکپارچه اعضای پروشات
                   </span>
-                  <h2 className="text-2xl sm:text-4xl font-black text-[#F2EFE9] leading-tight">
+                  <h2 className="text-xl sm:text-4xl font-black text-[#F2EFE9] leading-tight">
                     کارت عضویت دیجیتال، برنامه ماهانه تمرین و رژیم، و ارتباط مستقیم با مدیریت.
                   </h2>
-                  <p className="text-xs sm:text-sm text-[#8A857B] leading-7 sm:leading-8 max-w-xl">
+                  <p className="text-[11px] sm:text-sm text-[#8A857B] leading-6 sm:leading-8 max-w-xl">
                     اعضای هر ۵ شعبه پروشات در شیراز می‌توانند با شماره موبایل ثبت‌شده خود وارد پورتال شوند، بارکد تردد گیت را دریافت کنند، برنامه تمرینی و غذایی ماهانه خود را مشاهده و دانلود نمایند و نظرات خود را مستقیماً برای مدیریت ارسال کنند.
                   </p>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-3.5 sm:space-y-4">
                   {[
                     {
                       num: '۱',
@@ -878,14 +893,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   ].map((step) => (
                     <div
                       key={step.num}
-                      className="pb-4 border-b border-[#F2EFE9]/10 last:border-b-0 last:pb-0 flex items-start gap-4"
+                      className="pb-3.5 sm:pb-4 border-b border-[#F2EFE9]/10 last:border-b-0 last:pb-0 flex items-start gap-3 sm:gap-4"
                     >
-                      <span className="w-6 h-6 rounded-[2px] bg-[#C9A96A]/15 border border-[#C9A96A]/40 text-[#C9A96A] text-xs font-black flex items-center justify-center shrink-0 mt-0.5">
+                      <span className="w-5 h-5 sm:w-6 sm:h-6 rounded-[2px] bg-[#C9A96A]/15 border border-[#C9A96A]/40 text-[#C9A96A] text-[11px] sm:text-xs font-black flex items-center justify-center shrink-0 mt-0.5">
                         {step.num}
                       </span>
                       <div>
-                        <h4 className="text-sm font-black text-[#F2EFE9]">{step.title}</h4>
-                        <p className="text-xs text-[#8A857B] mt-1 leading-relaxed">{step.desc}</p>
+                        <h4 className="text-xs sm:text-sm font-black text-[#F2EFE9]">{step.title}</h4>
+                        <p className="text-[11px] sm:text-xs text-[#8A857B] mt-0.5 leading-relaxed">{step.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -907,15 +922,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </div>
 
               {/* Parallax Still-Life Window with Offset Floating Brass Hairline Planes */}
-              <div className="lg:col-span-5 min-h-[300px] sm:min-h-[360px] relative p-4 sm:p-6 bg-[#09090B] flex items-center justify-center overflow-hidden">
+              <div className="lg:col-span-5 min-h-[220px] sm:min-h-[360px] relative p-3 sm:p-6 bg-[#09090B] flex items-center justify-center overflow-hidden">
                 <Parallax
                   speed={-24}
-                  className="absolute inset-7 border border-[#C9A96A]/25 pointer-events-none z-20"
+                  className="absolute inset-4 sm:inset-7 border border-[#C9A96A]/25 pointer-events-none z-20"
                   aria-hidden="true"
                 />
                 <Parallax
                   speed={22}
-                  className="absolute inset-9 border border-[#F2EFE9]/10 pointer-events-none z-20"
+                  className="absolute inset-6 sm:inset-9 border border-[#F2EFE9]/10 pointer-events-none z-20"
                   aria-hidden="true"
                 />
 
@@ -924,7 +939,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   alt="پرونده دیجیتال تمرین و تغذیه پروشات"
                   speed={0.26}
                   enableTilt={true}
-                  className="w-full h-full min-h-[280px] sm:min-h-[340px] border border-[#F2EFE9]/15 p-6 sm:p-8 flex flex-col justify-end"
+                  className="w-full h-full min-h-[200px] sm:min-h-[340px] border border-[#F2EFE9]/15 p-4 sm:p-8 flex flex-col justify-end"
                 >
                   <div
                     className="absolute inset-0 pointer-events-none"
@@ -935,10 +950,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   />
                   <div className="relative z-10 space-y-2">
                     <BrandLogo branchSlug={selectedBranch.slug} size="md" />
-                    <p className="text-sm font-black text-[#F2EFE9] pt-2">
+                    <p className="text-xs sm:text-sm font-black text-[#F2EFE9] pt-1 sm:pt-2">
                       ورود بدون رمز عبور با کد پیامکی
                     </p>
-                    <p className="text-xs text-[#8A857B]">
+                    <p className="text-[10px] sm:text-xs text-[#8A857B]">
                       پشتیبانی از هر ۵ شعبه شیراز با تفکیک خودکار شعبه پریمیوم و سایر شعب
                     </p>
                   </div>
@@ -954,11 +969,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         <footer
           id="contact"
           ref={footerRef}
-          className="relative bg-[#050506] pt-14 sm:pt-16 pb-12 text-xs text-[#8A857B] overflow-hidden"
+          className="relative bg-[#050506] pt-10 sm:pt-16 pb-10 sm:pb-12 text-[11px] sm:text-xs text-[#8A857B] overflow-hidden"
         >
-          <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-10 space-y-10 sm:space-y-12">
-            <div className="flex flex-wrap items-center justify-between gap-4 sm:gap-6 pb-8 border-b border-[#F2EFE9]/10">
-              <div className="flex items-center gap-3.5 sm:gap-4">
+          <div className="relative z-10 max-w-[1400px] mx-auto px-3.5 sm:px-10 space-y-8 sm:space-y-12">
+            <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-6 pb-6 sm:pb-8 border-b border-[#F2EFE9]/10">
+              <div className="flex items-center gap-3 sm:gap-4">
                 <BrandLogo branchSlug="premium" size="md" />
                 <span className="w-px h-5 bg-[#F2EFE9]/15" />
                 <span className="text-xs sm:text-sm font-black text-[#F2EFE9]">
@@ -970,33 +985,33 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 href="https://www.instagram.com/proshot__gym/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 border border-[#F2EFE9]/20 hover:border-[#C9A96A] text-[#F2EFE9] font-bold transition-colors"
+                className="px-3 py-1.5 sm:px-4 sm:py-2 border border-[#F2EFE9]/20 hover:border-[#C9A96A] text-[#F2EFE9] font-bold transition-colors text-[11px] sm:text-xs"
                 dir="ltr"
               >
                 Instagram: @proshot__gym
               </a>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
               {SHIRAZ_BRANCHES.map((b) => (
-                <div key={b.id} className="space-y-2 border-r border-[#F2EFE9]/12 pr-4">
+                <div key={b.id} className="space-y-1.5 sm:space-y-2 border-r border-[#F2EFE9]/12 pr-3 sm:pr-4">
                   <span
                     className="text-xs font-black block"
                     style={{ color: b.isPremium ? '#C9A96A' : '#F2EFE9' }}
                   >
                     {b.name}
                   </span>
-                  <p className="text-[11px] text-[#8A857B] leading-relaxed">{b.address}</p>
+                  <p className="text-[10px] sm:text-[11px] text-[#8A857B] leading-relaxed">{b.address}</p>
                   {b.phone ? (
                     <a
                       href={`tel:${b.phone}`}
-                      className="text-xs font-bold text-[#F2EFE9] hover:text-[#C9A96A] block pt-1"
+                      className="text-[11px] sm:text-xs font-bold text-[#F2EFE9] hover:text-[#C9A96A] block pt-0.5 sm:pt-1"
                       dir="ltr"
                     >
                       {b.phoneDisplay}
                     </a>
                   ) : (
-                    <span className="text-[11px] text-[#8A857B] block pt-1">
+                    <span className="text-[10px] sm:text-[11px] text-[#8A857B] block pt-0.5 sm:pt-1">
                       {b.phoneDisplay}
                     </span>
                   )}
@@ -1005,14 +1020,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </div>
 
             {/* Rising Architectural Wordmark */}
-            <div className="pt-4 overflow-hidden text-center" dir="ltr" aria-hidden="true">
+            <div className="pt-3 sm:pt-4 overflow-hidden text-center" dir="ltr" aria-hidden="true">
               <span className="footer-wordmark block">PROSHOT SHIRAZ</span>
             </div>
 
-            <div className="pt-6 border-t border-[#F2EFE9]/10 flex flex-wrap items-center justify-between gap-4 text-[11px]">
+            <div className="pt-5 sm:pt-6 border-t border-[#F2EFE9]/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[10px] sm:text-[11px]">
               <span>تمامی حقوق برای مجموعه باشگاه‌های ورزشی پروشات (شیراز) محفوظ است.</span>
 
-              <div className="flex flex-wrap items-center gap-4 sm:gap-5">
+              <div className="flex flex-wrap items-center gap-3.5 sm:gap-5">
                 <button
                   type="button"
                   onClick={() => onNavigate('member', 'premium')}

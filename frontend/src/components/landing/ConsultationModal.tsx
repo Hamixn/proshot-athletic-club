@@ -64,55 +64,55 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
       onClick={resetAndClose}
     >
       <div
-        className="relative w-full max-w-lg bg-[#0B0B0D] border border-[#F2EFE9]/20 p-6 sm:p-8 text-[#F2EFE9]"
+        className="relative w-full max-w-lg bg-[#0B0B0D] border border-[#F2EFE9]/20 p-4 sm:p-8 text-[#F2EFE9] max-h-[92vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={resetAndClose}
-          className="absolute top-5 left-5 w-9 h-9 border border-[#F2EFE9]/15 flex items-center justify-center text-[#9A958C] hover:text-[#F2EFE9] hover:border-[#C9A96A] transition-colors cursor-pointer"
+          className="absolute top-4 left-4 sm:top-5 sm:left-5 w-8 h-8 sm:w-9 sm:h-9 border border-[#F2EFE9]/15 flex items-center justify-center text-[#9A958C] hover:text-[#F2EFE9] hover:border-[#C9A96A] transition-colors cursor-pointer"
         >
           <X className="w-4 h-4" />
         </button>
 
-        <div className="flex items-center gap-2 text-[#C9A96A] text-xs font-bold mb-2">
+        <div className="flex items-center gap-2 text-[#C9A96A] text-[11px] sm:text-xs font-bold mb-1.5 sm:mb-2">
           <Sparkles className="w-3.5 h-3.5" />
           <span>مشاوره عضویت و هماهنگی بازدید حضوری</span>
         </div>
-        <h3 className="text-2xl font-black text-[#F2EFE9] mb-2">
+        <h3 className="text-xl sm:text-2xl font-black text-[#F2EFE9] mb-1.5 sm:mb-2">
           درخواست عضویت در شعب شیراز
         </h3>
-        <p className="text-xs text-[#9A958C] leading-relaxed mb-6">
+        <p className="text-[11px] sm:text-xs text-[#9A958C] leading-relaxed mb-4 sm:mb-6">
           شعبه مورد نظر خود در شیراز را انتخاب نمایید تا کارشناسان پذیرش جهت هماهنگی بازدید و اعلام تعرفه‌های عضویت با شما تماس بگیرند.
         </p>
 
         {successMsg ? (
-          <div className="py-8 text-center border border-[#C9A96A]/30 bg-[#C9A96A]/5 p-6">
-            <CheckCircle2 className="w-10 h-10 text-[#C9A96A] mx-auto mb-3" />
-            <h4 className="text-base font-black text-[#F2EFE9] mb-2">
+          <div className="py-6 sm:py-8 text-center border border-[#C9A96A]/30 bg-[#C9A96A]/5 p-4 sm:p-6">
+            <CheckCircle2 className="w-9 h-9 sm:w-10 sm:h-10 text-[#C9A96A] mx-auto mb-2 sm:mb-3" />
+            <h4 className="text-sm sm:text-base font-black text-[#F2EFE9] mb-1.5 sm:mb-2">
               درخواست شما ثبت گردید
             </h4>
-            <p className="text-xs text-[#9A958C] leading-relaxed mb-6">
+            <p className="text-[11px] sm:text-xs text-[#9A958C] leading-relaxed mb-4 sm:mb-6">
               {successMsg}
             </p>
             <button
               type="button"
               onClick={resetAndClose}
-              className="px-6 py-3 bg-[#C9A96A] text-[#070708] text-xs font-black hover:bg-[#d8b97a] transition-colors cursor-pointer"
+              className="px-5 sm:px-6 py-2.5 sm:py-3 bg-[#C9A96A] text-[#070708] text-xs font-black hover:bg-[#d8b97a] transition-colors cursor-pointer"
             >
               بازگشت به وب‌سایت
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
             {error && (
-              <div className="p-3 border border-red-500/40 bg-red-500/10 text-red-300 text-xs">
+              <div className="p-2.5 sm:p-3 border border-red-500/40 bg-red-500/10 text-red-300 text-xs">
                 {error}
               </div>
             )}
 
             <div>
-              <label className="block text-xs font-bold text-[#F2EFE9]/80 mb-1.5">
+              <label className="block text-[11px] sm:text-xs font-bold text-[#F2EFE9]/80 mb-1">
                 نام و نام خانوادگی
               </label>
               <div className="relative">
@@ -123,13 +123,13 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="مثال: سارا رضایی"
-                  className="w-full bg-[#111114] border border-[#F2EFE9]/15 pr-10 pl-4 py-3 text-sm text-[#F2EFE9] focus:outline-none focus:border-[#C9A96A]"
+                  className="w-full bg-[#111114] border border-[#F2EFE9]/15 pr-10 pl-4 py-2.5 sm:py-3 text-xs sm:text-sm text-[#F2EFE9] focus:outline-none focus:border-[#C9A96A]"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#F2EFE9]/80 mb-1.5">
+              <label className="block text-[11px] sm:text-xs font-bold text-[#F2EFE9]/80 mb-1">
                 شماره تلفن همراه
               </label>
               <div className="relative">
@@ -141,19 +141,19 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                   value={mobile}
                   onChange={(e) => setMobile(e.target.value)}
                   placeholder="0917..."
-                  className="w-full bg-[#111114] border border-[#F2EFE9]/15 pr-10 pl-4 py-3 text-sm text-left font-mono text-[#F2EFE9] focus:outline-none focus:border-[#C9A96A]"
+                  className="w-full bg-[#111114] border border-[#F2EFE9]/15 pr-10 pl-4 py-2.5 sm:py-3 text-xs sm:text-sm text-left font-mono text-[#F2EFE9] focus:outline-none focus:border-[#C9A96A]"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#F2EFE9]/80 mb-1.5">
+              <label className="block text-[11px] sm:text-xs font-bold text-[#F2EFE9]/80 mb-1">
                 انتخاب شعبه در شیراز
               </label>
               <select
                 value={branchSlug}
                 onChange={(e) => setBranchSlug(e.target.value)}
-                className="w-full bg-[#111114] border border-[#F2EFE9]/15 px-3.5 py-3 text-xs font-bold text-[#F2EFE9] focus:outline-none focus:border-[#C9A96A]"
+                className="w-full bg-[#111114] border border-[#F2EFE9]/15 px-3 py-2.5 sm:py-3 text-xs font-bold text-[#F2EFE9] focus:outline-none focus:border-[#C9A96A]"
               >
                 {SHIRAZ_BRANCHES.map((b) => (
                   <option key={b.slug} value={b.slug}>
@@ -164,13 +164,13 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#F2EFE9]/80 mb-1.5">
+              <label className="block text-[11px] sm:text-xs font-bold text-[#F2EFE9]/80 mb-1">
                 هدف تمرینی یا درخواست
               </label>
               <select
                 value={goal}
                 onChange={(e) => setGoal(e.target.value)}
-                className="w-full bg-[#111114] border border-[#F2EFE9]/15 px-3.5 py-3 text-xs font-bold text-[#F2EFE9] focus:outline-none focus:border-[#C9A96A]"
+                className="w-full bg-[#111114] border border-[#F2EFE9]/15 px-3 py-2.5 sm:py-3 text-xs font-bold text-[#F2EFE9] focus:outline-none focus:border-[#C9A96A]"
               >
                 {GOALS.map((g) => (
                   <option key={g} value={g}>
@@ -183,7 +183,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3.5 bg-[#C9A96A] text-[#070708] text-xs font-black hover:bg-[#d8b97a] transition-colors cursor-pointer disabled:opacity-50 mt-2"
+              className="w-full py-3 sm:py-3.5 bg-[#C9A96A] text-[#070708] text-xs font-black hover:bg-[#d8b97a] transition-colors cursor-pointer disabled:opacity-50 mt-1 sm:mt-2"
             >
               {loading ? 'در حال ثبت درخواست...' : 'ثبت درخواست مشاوره و بازدید'}
             </button>

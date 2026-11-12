@@ -261,7 +261,7 @@ html[data-motion="lite"] .hero-copy-layer {
 /* Outlined Ghost Numeral in Branch Showcase & Footer */
 .ghost-numeral {
   font-family: var(--font-serif);
-  font-size: clamp(6rem, 15vw, 13rem);
+  font-size: clamp(4.5rem, 15vw, 13rem);
   font-weight: 700;
   line-height: 0.85;
   color: transparent;
@@ -293,7 +293,7 @@ html[data-motion="lite"] .hero-copy-layer {
 
 .scroll-scene__sticky {
   position: relative;
-  min-height: 540px;
+  min-height: 420px;
   overflow: hidden;
   --open: clamp(0, calc((var(--p, 0.5) - 0.04) * 2.5), 1);
 }
@@ -340,7 +340,7 @@ html[data-motion="lite"] .scene-line {
 /* Footer Architectural Wordmark Rise */
 .footer-wordmark {
   font-family: var(--font-sans);
-  font-size: clamp(2.35rem, 11vw, 14rem);
+  font-size: clamp(1.8rem, 11vw, 14rem);
   font-weight: 900;
   line-height: 0.85;
   letter-spacing: 0.12em !important;

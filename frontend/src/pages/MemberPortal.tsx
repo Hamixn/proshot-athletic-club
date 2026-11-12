@@ -75,7 +75,7 @@ export const MemberPortal: React.FC<MemberPortalProps> = ({ onBackToSite }) => {
       {!isLoggedIn ? (
         <div className="max-w-md mx-auto">
           {/* Architectural Hero Image Header */}
-          <div className="relative h-60 overflow-hidden border-b border-[#EDE8DF]/12 bg-[#111113]">
+          <div className="relative h-48 sm:h-60 overflow-hidden border-b border-[#EDE8DF]/12 bg-[#111113]">
             <img
               src={resolveAssetPath(isPremium ? 'img/hero-premium.jpg' : 'img/hero-standard.jpg')}
               alt=""
@@ -88,14 +88,14 @@ export const MemberPortal: React.FC<MemberPortalProps> = ({ onBackToSite }) => {
                   'linear-gradient(to top, #0A0A0B 8%, rgba(10,10,11,0.5) 60%, rgba(10,10,11,0.75) 100%)',
               }}
             />
-            <div className="relative z-10 h-full px-6 pb-6 flex flex-col justify-end">
-              <div className="mb-4">
+            <div className="relative z-10 h-full px-4 sm:px-6 pb-4 sm:pb-6 flex flex-col justify-end">
+              <div className="mb-3 sm:mb-4">
                 <BrandLogo branchSlug={activeBranchSlug} size="lg" />
               </div>
-              <h1 className="text-2xl font-black text-[#EDE8DF] leading-tight">
+              <h1 className="text-xl sm:text-2xl font-black text-[#EDE8DF] leading-tight">
                 {step === 'phone' ? 'ورود اعضای باشگاه پروشات' : 'تأیید کد یک‌بارمصرف'}
               </h1>
-              <p className="text-xs text-[#8A857B] mt-1.5 leading-relaxed">
+              <p className="text-[11px] sm:text-xs text-[#8A857B] mt-1 sm:mt-1.5 leading-relaxed">
                 {step === 'phone'
                   ? 'کارت عضویت دیجیتال، بارکد تردد گیت و برنامه‌های تمرینی و غذایی'
                   : 'کد ۵ رقمی پیامک‌شده به تلفن همراه خود را وارد نمایید'}
@@ -103,7 +103,7 @@ export const MemberPortal: React.FC<MemberPortalProps> = ({ onBackToSite }) => {
             </div>
           </div>
 
-          <div className="px-6 py-8">
+          <div className="px-4 sm:px-6 py-6 sm:py-8">
             {step === 'phone' ? (
               <LoginForm
                 onSubmit={handlePhoneSubmit}
@@ -121,21 +121,21 @@ export const MemberPortal: React.FC<MemberPortalProps> = ({ onBackToSite }) => {
               />
             )}
 
-            <div className="mt-10 pt-5 border-t border-[#EDE8DF]/[0.08] flex items-center justify-between text-[11px] text-[#8A857B]">
+            <div className="mt-8 sm:mt-10 pt-4 sm:pt-5 border-t border-[#EDE8DF]/[0.08] flex items-center justify-between text-[10px] sm:text-[11px] text-[#8A857B]">
               <span>مجموعه باشگاه‌های پروشات — شیراز</span>
               <span>پریمیوم • پلاس • لیدی • ملاصدرا • خاکشناسی</span>
             </div>
           </div>
         </div>
       ) : membershipLoading ? (
-        <div className="py-28 text-center">
+        <div className="py-20 sm:py-28 text-center">
           <Spinner size="lg" />
           <p className="text-xs text-[#8A857B] mt-4">
             در حال بازخوانی پرونده عضویت...
           </p>
         </div>
       ) : (
-        <main className="max-w-md mx-auto px-5 py-6 space-y-7">
+        <main className="max-w-md mx-auto px-4 sm:px-5 py-4 sm:py-6 space-y-5 sm:space-y-7">
           <nav
             aria-label="بخش‌های پورتال اعضا"
             className="grid grid-cols-3 border-b border-[#EDE8DF]/12"
@@ -150,11 +150,11 @@ export const MemberPortal: React.FC<MemberPortalProps> = ({ onBackToSite }) => {
                 <button
                   key={tab.id}
                   onClick={() => setPortalTab(tab.id as any)}
-                  className={`py-3.5 text-center transition-colors relative cursor-pointer ${
+                  className={`py-2.5 sm:py-3.5 text-center transition-colors relative cursor-pointer ${
                     active ? 'text-[#EDE8DF]' : 'text-[#8A857B] hover:text-[#EDE8DF]'
                   }`}
                 >
-                  <span className="text-xs font-extrabold">{tab.label}</span>
+                  <span className="text-[11px] sm:text-xs font-extrabold">{tab.label}</span>
                   {active && (
                     <span className="absolute bottom-0 right-0 left-0 h-[2px] bg-[#C9A96A]" />
                   )}
