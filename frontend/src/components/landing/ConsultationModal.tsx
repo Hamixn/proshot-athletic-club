@@ -10,10 +10,10 @@ interface ConsultationModalProps {
 }
 
 const GOALS = [
-  'بدنسازی تخصصی و هایپرتروفی',
-  'فیتنس، کاهش وزن و فرم‌دهی',
-  'پیلاتس، اصلاحی و انعطاف‌پذیری',
-  'بازدید حضوری از شعبه و استعلام شهریه',
+  'بدنسازی تخصصی، هایپرتروفی و افزایش توان عضلانی',
+  'فرم‌دهی پیشرفته، کاهش توده چربی و کاندیشنینگ متابولیک',
+  'ریفورمر پیلاتس، اصلاح قامت و پیشگیری از آسیب',
+  'هماهنگی بازدید اختصاصی، تور کلوب و مشاوره پلن عضویت',
 ];
 
 export const ConsultationModal: React.FC<ConsultationModalProps> = ({
@@ -77,13 +77,13 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
 
         <div className="flex items-center gap-2 text-[#C9A96A] text-[11px] sm:text-xs font-bold mb-1.5 sm:mb-2">
           <Sparkles className="w-3.5 h-3.5" />
-          <span>مشاوره عضویت و هماهنگی بازدید حضوری</span>
+          <span>مشاوره اختصاصی عضویت و بازدید حضوری کلوب</span>
         </div>
         <h3 className="text-xl sm:text-2xl font-black text-[#F2EFE9] mb-1.5 sm:mb-2">
-          درخواست عضویت در شعب شیراز
+          رزرو ارزیابی و مشاوره عضویت در شیراز
         </h3>
         <p className="text-[11px] sm:text-xs text-[#9A958C] leading-relaxed mb-4 sm:mb-6">
-          شعبه مورد نظر خود در شیراز را انتخاب نمایید تا کارشناسان پذیرش جهت هماهنگی بازدید و اعلام تعرفه‌های عضویت با شما تماس بگیرند.
+          جهت تجربه فضای متمایز کلوب، آشنایی با تجهیزات بیومکانیکال و دریافت اطلاعات پکیج‌های عضویت سالانه و فصلی، اطلاعات تماس خود را ثبت نمایید تا مشاور ارشد کلوب با شما تماس حاصل فرماید.
         </p>
 
         {successMsg ? (
@@ -185,7 +185,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
               disabled={loading}
               className="w-full py-3 sm:py-3.5 bg-[#C9A96A] text-[#070708] text-xs font-black hover:bg-[#d8b97a] transition-colors cursor-pointer disabled:opacity-50 mt-1 sm:mt-2"
             >
-              {loading ? 'در حال ثبت درخواست...' : 'ثبت درخواست مشاوره و بازدید'}
+              {loading ? 'در حال ثبت درخواست...' : 'ثبت درخواست مشاوره و تور اختصاصی کلوب'}
             </button>
           </form>
         )}

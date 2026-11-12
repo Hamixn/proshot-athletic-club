@@ -272,18 +272,19 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <div className="inline-flex items-center gap-1.5 sm:gap-3 px-2 sm:px-3.5 py-1 sm:py-1.5 border border-[#C9A96A]/45 bg-[#0A0A0C]/90">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#C9A96A] shrink-0" />
                 <span className="text-[9px] sm:text-xs font-bold text-[#F2EFE9] leading-relaxed">
-                  مجموعه باشگاه‌های بدنسازی و تناسب اندام پروشات — شیراز
+                  کلوب ورزشی و مرکز تخصصی ارتقای آمادگی جسمانی پروشات — شیراز
                 </span>
               </div>
 
               <div className="space-y-1">
                 <SplitReveal
-                  fullText="استاندارد حرفه‌ای بدنسازی در شیراز."
+                  fullText="استاندارد ممتاز بدنسازی اختصاصی در شیراز."
                   className="text-2xl sm:text-6xl lg:text-7xl font-black text-[#F2EFE9] leading-[1.2] sm:leading-[1.12] drop-shadow-lg"
                   words={[
                     { t: 'استاندارد' },
-                    { t: 'حرفه‌ای', br: true },
+                    { t: 'ممتاز', br: true },
                     { t: 'بدنسازی' },
+                    { t: 'اختصاصی' },
                     { t: 'در' },
                     { t: 'شیراز.', accent: true },
                   ]}
@@ -292,7 +293,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
               <Parallax speed={-18}>
                 <p className="text-[11px] sm:text-lg text-[#F2EFE9]/85 max-w-2xl leading-5 sm:leading-8 font-normal line-clamp-3 sm:line-clamp-none">
-                  پنج شعبه تخصصی ویژه آقایان و بانوان در شیراز؛ مجهز به دستگاه‌های بدنسازی استاندارد، استودیوهای فیتنس، TRX، اسپینینگ و پیلاتس، مجموعه آبی و سامانه دیجیتال برنامه تمرینی و تغذیه.
+                  پنج کلوب ورزشی با تجهیزات بیومکانیکال ایتالیایی Technogym، مربیگری فیزیولوژیک فردی، استودیوهای تخصصی ریفورمر پیلاتس، مجموعه آب‌درمانی و ریکاوری، و پورتال هوشمند اعضا در شیراز.
                 </p>
               </Parallax>
 
@@ -451,14 +452,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <RevealBlock className="flex flex-wrap items-end justify-between gap-3 sm:gap-6 pb-4 sm:pb-8 border-b border-[#F2EFE9]/12">
               <div>
                 <span className="text-[11px] sm:text-xs font-bold text-[#C9A96A] block mb-1.5 sm:mb-2">
-                  شعب مجموعه ورزشی پروشات در شیراز
+                  شبکه کلوب‌های اختصاصی پروشات در شیراز
                 </span>
                 <h2 className="text-xl sm:text-5xl font-black text-[#F2EFE9]">
-                  پنج شعبه در نقاط اصلی شیراز
+                  پنج مقصد ورزشی در شاخص‌ترین نقاط شیراز
                 </h2>
               </div>
               <p className="text-[11px] sm:text-sm text-[#8A857B] max-w-md leading-6 sm:leading-7">
-                شعبه مورد نظر خود را انتخاب کنید تا نشانی دقیق، شماره تماس مستقیم، تصاویر، امکانات و ورودی پورتال همان شعبه را مشاهده نمایید.
+                معماری متمایز، حریم تمرینی آرام و استانداردهای سطح اول بین‌المللی؛ شعبه مدنظر خود را جهت بررسی امکانات، تور تصویری و ورود به پورتال انتخاب فرمایید.
               </p>
             </RevealBlock>
 
@@ -556,7 +557,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   <div className="relative z-10 mt-auto pt-6 sm:pt-12 flex items-end justify-between gap-2 sm:gap-3">
                     <div className="space-y-0.5 sm:space-y-1 min-w-0">
                       <span className="text-[10px] sm:text-xs text-[#C9A96A] font-bold block">
-                        فضای تمرینی استاندارد
+                        اتمسفر ورزشی اختصاصی
                       </span>
                       <span className="text-xs sm:text-lg font-black text-[#F2EFE9] block leading-snug truncate">
                         {selectedBranch.name}
@@ -704,14 +705,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <RevealBlock className="flex flex-wrap items-end justify-between gap-3 sm:gap-6">
               <div>
                 <span className="text-[11px] sm:text-xs font-bold text-[#C9A96A] block mb-1.5 sm:mb-2">
-                  رشته‌های ورزشی و امکانات مجموعه
+                  دیسیپلین‌های ورزشی و مهندسی فیزیولوژی
                 </span>
                 <h2 className="text-xl sm:text-5xl font-black text-[#F2EFE9]">
-                  تجهیزات استاندارد، مربیان متخصص
+                  تلفیق علم حرکت، بیومکانیک و مربیگری اختصاصی
                 </h2>
               </div>
               <p className="text-[11px] sm:text-sm text-[#8A857B] max-w-md leading-6 sm:leading-7">
-                تمامی شعب پروشات در شیراز با تمرکز بر کیفیت دستگاه‌ها، تهویه استاندارد و برنامه‌ریزی علمی تمرین و تغذیه تجهیز شده‌اند.
+                تمام کلوب‌های پروشات در شیراز با تجهیزات کالیبره‌شده ایتالیایی، تهویه مطبوع استریل بیمارستانی و طراحی اختصاصی برنامه تمرین و تغذیه مهندسی شده‌اند.
               </p>
             </RevealBlock>
 
@@ -802,21 +803,21 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   className="scene-line inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 bg-[#070708]/85 border border-[#C9A96A]/45 text-[10px] sm:text-xs font-bold text-[#C9A96A]"
                   style={{ '--start': 0.04 } as React.CSSProperties}
                 >
-                  ریکاوری و بازسازی عضلانی پس از تمرین
+                  پروتکل‌های پیشرفته بازسازی عصبی‌عضلانی
                 </span>
 
                 <h3
                   className="scene-line text-lg sm:text-5xl font-black text-[#F2EFE9] leading-tight drop-shadow-md"
                   style={{ '--start': 0.1 } as React.CSSProperties}
                 >
-                  سونا خشک و بخار، جکوزی و حوضچه آب سرد در کنار سالن تمرینی.
+                  هیدروتراپی، ترموتراپی و بازگشت به تعادل فیزیکی در بطن کلوب.
                 </h3>
 
                 <p
                   className="scene-line text-[11px] sm:text-base text-[#F2EFE9]/90 leading-6 sm:leading-8 drop-shadow-xs"
                   style={{ '--start': 0.16 } as React.CSSProperties}
                 >
-                  ترکیب تمرینات قدرتی با پروتکل‌های ریکاوری استاندارد و کافی‌شاپ تخصصی ورزشی برای به حداکثر رساندن بازدهی هر جلسه تمرین در شعب پروشات شیراز.
+                  ریکاوری اصولی مرز میان فرسودگی و اوج عملکرد است؛ سونای خشک فنلاندی، جکوزی هیدروماساژ، حوضچه شوک سرد و بار تغذیه تخصصی جهت بازسازی سریع تارچه‌های عضلانی و کاهش التهاب سیستمیک.
                 </p>
 
                 <div
@@ -825,26 +826,26 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 >
                   <div className="p-2.5 sm:p-4 bg-[#070708]/90 border border-[#F2EFE9]/15 flex sm:block items-center justify-between gap-2">
                     <span className="text-xs sm:text-sm font-black text-[#C9A96A] block">
-                      سونا و جکوزی
+                      ترموتراپی عمیق
                     </span>
                     <span className="text-[10px] sm:text-xs text-[#8A857B] block sm:mt-0.5">
-                      حرارت‌درمانی و ریلکسیشن
+                      سونای فنلاندی و اتاق بخار
                     </span>
                   </div>
                   <div className="p-2.5 sm:p-4 bg-[#070708]/90 border border-[#F2EFE9]/15 flex sm:block items-center justify-between gap-2">
                     <span className="text-xs sm:text-sm font-black text-[#C9A96A] block">
-                      حوضچه آب سرد
+                      کرایوتراپی شوک سرد
                     </span>
                     <span className="text-[10px] sm:text-xs text-[#8A857B] block sm:mt-0.5">
-                      کاهش التهاب عضلانی
+                      کاهش لاکتات و التهاب حاد
                     </span>
                   </div>
                   <div className="p-2.5 sm:p-4 bg-[#070708]/90 border border-[#F2EFE9]/15 flex sm:block items-center justify-between gap-2">
                     <span className="text-xs sm:text-sm font-black text-[#C9A96A] block">
-                      بوفه تخصصی
+                      لانژ تغذیه و بار سلامت
                     </span>
                     <span className="text-[10px] sm:text-xs text-[#8A857B] block sm:mt-0.5">
-                      پروتئین و تغذیه ورزشی
+                      اسموتی ارگانیک و شیک پروتئین
                     </span>
                   </div>
                 </div>
@@ -862,13 +863,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <div className="lg:col-span-7 p-4 sm:p-12 flex flex-col justify-between space-y-6 sm:space-y-8 border-b lg:border-b-0 lg:border-l border-[#F2EFE9]/12">
                 <div className="space-y-4 sm:space-y-5">
                   <span className="text-[11px] sm:text-xs font-bold text-[#C9A96A] block">
-                    سامانه یکپارچه اعضای پروشات
+                    اکوسیستم دیجیتال اختصاصی اعضا
                   </span>
                   <h2 className="text-xl sm:text-4xl font-black text-[#F2EFE9] leading-tight">
-                    کارت عضویت دیجیتال، برنامه ماهانه تمرین و رژیم، و ارتباط مستقیم با مدیریت.
+                    پرونده تندرستی، گیت تردد هوشمند و ارتباط بی‌واسطه با مدیریت کلوب.
                   </h2>
                   <p className="text-[11px] sm:text-sm text-[#8A857B] leading-6 sm:leading-8 max-w-xl">
-                    اعضای هر ۵ شعبه پروشات در شیراز می‌توانند با شماره موبایل ثبت‌شده خود وارد پورتال شوند، بارکد تردد گیت را دریافت کنند، برنامه تمرینی و غذایی ماهانه خود را مشاهده و دانلود نمایند و نظرات خود را مستقیماً برای مدیریت ارسال کنند.
+                    اعضای هر پنج کلوب پروشات در شیراز بدون نیاز به کلمه عبور و صرفاً با شماره همراه خود وارد سامانه اختصاصی می‌شوند؛ دریافت بارکد امنیتی گیت ورود، دسترسی کامل به رژیم‌های هدفمند و برنامه‌های تمرینی، و خط ارتباط مستقیم با کادر مدیریت.
                   </p>
                 </div>
 
@@ -876,18 +877,18 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   {[
                     {
                       num: '۱',
-                      title: 'کارت عضویت و بارکد تردد گیت',
-                      desc: 'نمایش اعتبار اشتراک، شعبه ثبت‌نامی و بارکد پویا برای ورود سریع به باشگاه.',
+                      title: 'پاسپورت دیجیتال و گیت تردد هوشمند',
+                      desc: 'نمایش اعتبار پکیج عضویت، تفکیک کلوب و بارکد رمزنگاری‌شده پویا جهت تردد سریع و بدون معطلی.',
                     },
                     {
                       num: '۲',
-                      title: 'دریافت برنامه ماهانه تمرینی و تغذیه',
-                      desc: 'ارسال مستقیم برنامه تمرین و رژیم غذایی توسط مربی شعبه به پروفایل عضو.',
+                      title: 'نسخه فیزیولوژیک تمرین و تغذیه اختصاصی',
+                      desc: 'طراحی انفرادی جداول تمرین، ست‌ها و رژیم غذایی توسط مربی ارشد و دسترسی مستقیم در پنل کاربری.',
                     },
                     {
                       num: '۳',
-                      title: 'ثبت نظر و پاسخگویی مدیریت',
-                      desc: 'امکان ثبت بازخورد درباره تجهیزات، مربیان و خدمات و دریافت پاسخ مدیریت.',
+                      title: 'کانسیرژ اختصاصی و ارتباط مستقیم با مدیریت',
+                      desc: 'ثبت بدون واسطه پیشنهادات، درخواست‌های ویژه و پیگیری سریع از سوی مدیریت ارشد کلوب.',
                     },
                   ].map((step) => (
                     <div
@@ -950,10 +951,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   <div className="relative z-10 space-y-2">
                     <BrandLogo variant="main" size="md" />
                     <p className="text-xs sm:text-sm font-black text-[#F2EFE9] pt-1 sm:pt-2">
-                      ورود بدون رمز عبور با کد پیامکی
+                      احراز هویت بدون رمز با پیامک یک‌بارمصرف امن
                     </p>
                     <p className="text-[10px] sm:text-xs text-[#8A857B]">
-                      پشتیبانی از هر ۵ شعبه شیراز با تفکیک خودکار شعبه پریمیوم و سایر شعب
+                      تفکیک هوشمند شعبه پریمیوم و سایر کلوب‌های تخصصی پروشات در شیراز
                     </p>
                   </div>
                 </ParallaxFrame>

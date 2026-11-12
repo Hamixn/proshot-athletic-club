@@ -93,12 +93,12 @@ export const MemberPortal: React.FC<MemberPortalProps> = ({ onBackToSite }) => {
                 <BrandLogo variant="main" size="lg" />
               </div>
               <h1 className="text-xl sm:text-2xl font-black text-[#EDE8DF] leading-tight">
-                {step === 'phone' ? 'ورود اعضای باشگاه پروشات' : 'تأیید کد یک‌بارمصرف'}
+                {step === 'phone' ? 'ورود به پورتال اختصاصی اعضای پروشات' : 'تأیید کد یک‌بارمصرف امن'}
               </h1>
               <p className="text-[11px] sm:text-xs text-[#8A857B] mt-1 sm:mt-1.5 leading-relaxed">
                 {step === 'phone'
-                  ? 'کارت عضویت دیجیتال، بارکد تردد گیت و برنامه‌های تمرینی و غذایی'
-                  : 'کد ۵ رقمی پیامک‌شده به تلفن همراه خود را وارد نمایید'}
+                  ? 'پاسپورت دیجیتال کلوب، گیت تردد هوشمند و پرونده فیزیولوژی تمرین و تغذیه'
+                  : 'کد ۵ رقمی ارسال‌شده به تلفن همراه عضویت خود را وارد نمایید'}
               </p>
             </div>
           </div>
