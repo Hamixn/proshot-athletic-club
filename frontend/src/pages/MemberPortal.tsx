@@ -90,7 +90,7 @@ export const MemberPortal: React.FC<MemberPortalProps> = ({ onBackToSite }) => {
             />
             <div className="relative z-10 h-full px-4 sm:px-6 pb-4 sm:pb-6 flex flex-col justify-end">
               <div className="mb-3 sm:mb-4">
-                <BrandLogo branchSlug={activeBranchSlug} size="lg" />
+                <BrandLogo variant="main" size="lg" />
               </div>
               <h1 className="text-xl sm:text-2xl font-black text-[#EDE8DF] leading-tight">
                 {step === 'phone' ? 'ورود اعضای باشگاه پروشات' : 'تأیید کد یک‌بارمصرف'}
@@ -123,7 +123,7 @@ export const MemberPortal: React.FC<MemberPortalProps> = ({ onBackToSite }) => {
 
             <div className="mt-8 sm:mt-10 pt-4 sm:pt-5 border-t border-[#EDE8DF]/[0.08] flex items-center justify-between text-[10px] sm:text-[11px] text-[#8A857B]">
               <span>مجموعه باشگاه‌های پروشات — شیراز</span>
-              <span>پریمیوم • پلاس • لیدی • ملاصدرا • خاکشناسی</span>
+              <span>پریمیوم • پلاس آقایان • پلاس بانوان • ملاصدرا • خاکشناسی</span>
             </div>
           </div>
         </div>

@@ -10,6 +10,7 @@ export function resolveAssetPath(relPath: string): string {
 }
 
 export function isPremiumBranch(branchSlug?: string | null, branchName?: string | null): boolean {
+  if (!branchSlug && !branchName) return false;
   return (
     branchSlug === 'premium' ||
     Boolean(branchName?.toLowerCase().includes('premium')) ||
@@ -24,6 +25,7 @@ interface BrandLogoProps {
   className?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl';
   showSubtitle?: boolean;
+  variant?: 'main' | 'branch' | 'auto';
 }
 
 export const BrandLogo: React.FC<BrandLogoProps> = ({
@@ -32,8 +34,11 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
   className = '',
   size = 'md',
   showSubtitle = false,
+  variant = 'auto',
 }) => {
-  const isPremium = isPremiumBranch(branchSlug, branchName);
+  // If variant === 'main', always use the primary PROSHOT GYM logo
+  // Only use PROSHOT PREMIUM logo for explicit premium users or branches
+  const isPremium = variant === 'main' ? false : isPremiumBranch(branchSlug, branchName);
   const [imgError, setImgError] = useState(false);
 
   const heightClasses = {

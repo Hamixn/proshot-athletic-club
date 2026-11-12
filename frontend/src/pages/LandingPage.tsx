@@ -86,8 +86,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <div className="flex items-center gap-3 sm:gap-5 min-w-0">
               <a href="#top" className="flex items-center shrink-0">
                 <BrandLogo
-                  branchSlug={selectedBranch.slug}
-                  branchName={selectedBranch.name}
+                  variant="main"
                   size="md"
                 />
               </a>
@@ -416,7 +415,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 <span>—</span>
                 <span>PROSHOT PLUS • GHODOUSI</span>
                 <span>—</span>
-                <span>PROSHOT LADY • GHODOUSI</span>
+                <span>PROSHOT PLUS WOMEN • GHODOUSI</span>
                 <span>—</span>
                 <span>PROSHOT MOLLASADRA • JAMALI</span>
                 <span>—</span>
@@ -949,7 +948,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     }}
                   />
                   <div className="relative z-10 space-y-2">
-                    <BrandLogo branchSlug={selectedBranch.slug} size="md" />
+                    <BrandLogo variant="main" size="md" />
                     <p className="text-xs sm:text-sm font-black text-[#F2EFE9] pt-1 sm:pt-2">
                       ورود بدون رمز عبور با کد پیامکی
                     </p>
@@ -974,7 +973,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           <div className="relative z-10 max-w-[1400px] mx-auto px-3.5 sm:px-10 space-y-8 sm:space-y-12">
             <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-6 pb-6 sm:pb-8 border-b border-[#F2EFE9]/10">
               <div className="flex items-center gap-3 sm:gap-4">
-                <BrandLogo branchSlug="premium" size="md" />
+                <BrandLogo variant="main" size="md" />
                 <span className="w-px h-5 bg-[#F2EFE9]/15" />
                 <span className="text-xs sm:text-sm font-black text-[#F2EFE9]">
                   مجموعه باشگاه‌های ورزشی پروشات — شیراز

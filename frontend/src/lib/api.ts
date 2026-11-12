@@ -69,7 +69,7 @@ const mockState: {
   branches: [
     { id: 1, name: 'پریمیوم (سروناز)', slug: 'premium', gender_policy: 'mixed', is_active: true },
     { id: 2, name: 'پلاس (قدوسی — آقایان)', slug: 'plus-men', gender_policy: 'men', is_active: true },
-    { id: 3, name: 'لیدی (قدوسی — بانوان)', slug: 'plus-women', gender_policy: 'women', is_active: true },
+    { id: 3, name: 'پلاس بانوان (قدوسی شرقی)', slug: 'plus-women', gender_policy: 'women', is_active: true },
     { id: 4, name: 'ملاصدرا (آقایان)', slug: 'standard-men', gender_policy: 'men', is_active: true },
     { id: 5, name: 'خاکشناسی (بانوان)', slug: 'standard-women', gender_policy: 'women', is_active: true },
   ],

@@ -74,7 +74,7 @@ function resolveLogoForBranch(branchSlug) {
 const branchesToTest = [
   { slug: 'premium', expectedLogo: 'logo-premium.png', name: 'شعبه پریمیوم (سروناز شیراز)' },
   { slug: 'plus-men', expectedLogo: 'logo-standard.png', name: 'شعبه پلاس (قدوسی — آقایان)' },
-  { slug: 'plus-women', expectedLogo: 'logo-standard.png', name: 'شعبه لیدی (قدوسی — بانوان)' },
+  { slug: 'plus-women', expectedLogo: 'logo-standard.png', name: 'شعبه پلاس بانوان (قدوسی شرقی)' },
   { slug: 'standard-men', expectedLogo: 'logo-standard.png', name: 'شعبه ملاصدرا (آقایان)' },
   { slug: 'standard-women', expectedLogo: 'logo-standard.png', name: 'شعبه خاکشناسی (بانوان)' },
 ];
