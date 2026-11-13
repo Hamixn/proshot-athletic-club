@@ -54,9 +54,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, loading, error }
 
         <div className="flex items-center justify-between text-[11px] text-[#8A857B] pt-1">
           <span>ارسال پیامک کد یک‌بارمصرف</span>
-          <span className="font-mono text-[#C9A96A]" dir="ltr">
-            Demo: 09121111111 / 12345
-          </span>
+          <span className="text-[#C9A96A]/80 font-medium">احراز هویت پیامکی امن</span>
         </div>
       </div>
 

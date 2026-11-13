@@ -239,6 +239,15 @@ export function initDatabase(): void {
       status TEXT NOT NULL DEFAULT 'new',
       created_at TEXT NOT NULL DEFAULT (datetime('now'))
     );
+
+    -- Essential Performance Indexes
+    CREATE INDEX IF NOT EXISTS idx_members_mobile ON members(mobile_normalized);
+    CREATE INDEX IF NOT EXISTS idx_memberships_member ON memberships(member_id, is_current);
+    CREATE INDEX IF NOT EXISTS idx_attendance_member ON attendance(member_id);
+    CREATE INDEX IF NOT EXISTS idx_attendance_date ON attendance(check_date);
+    CREATE INDEX IF NOT EXISTS idx_qr_nonces_nonce ON qr_nonces(nonce);
+    CREATE INDEX IF NOT EXISTS idx_otp_mobile ON otp_codes(mobile_normalized);
+    CREATE INDEX IF NOT EXISTS idx_leads_created ON consultation_leads(created_at);
   `);
 
   seedInitialData();

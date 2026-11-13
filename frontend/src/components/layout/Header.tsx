@@ -23,7 +23,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header className="sticky top-0 z-40 bg-[#0A0A0B]/95 border-b border-[#EDE8DF]/12">
-      <div className="max-w-md mx-auto px-5 h-16 flex items-center justify-between gap-4">
+      <nav aria-label="ناوبری اصلی" className="max-w-md mx-auto px-5 h-16 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3.5 min-w-0">
           <BrandLogo
             branchSlug={branchSlug}
@@ -67,7 +67,7 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           )}
         </div>
-      </div>
+      </nav>
     </header>
   );
 };

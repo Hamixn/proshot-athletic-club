@@ -157,4 +157,21 @@ assert.strictEqual(fs.existsSync('x:/All/ProshotProject/proshot-member-center/pr
 assert.strictEqual(fs.existsSync('x:/All/ProshotProject/proshot-member-center/src/Database/Schema.php'), false);
 console.log('✅ 8. WordPress Decoupling: Verified (0 WordPress plugin files remain)');
 
-console.log('\n🎉 ALL 8 STANDALONE TEST SUITES COMPLETED AND VERIFIED SUCCESSFULLY!');
+// 9. Verify Auth Lockdown & Negative Path Security (401 on unauthenticated /me and /staff)
+const unauthMe = await handleApiRequest('GET', '/api/v1/me', new URLSearchParams(), {});
+assert.strictEqual(unauthMe.status, 401, 'Unauthenticated /me must return 401');
+
+const unauthQr = await handleApiRequest('GET', '/api/v1/me/qr', new URLSearchParams(), {});
+assert.strictEqual(unauthQr.status, 401, 'Unauthenticated /me/qr must return 401');
+
+const unauthStaff = await handleApiRequest('GET', '/api/v1/staff/plans', new URLSearchParams(), {});
+assert.strictEqual(unauthStaff.status, 401, 'Unauthenticated /staff/plans must return 401');
+
+const invalidLead = await handleApiRequest('POST', '/api/v1/leads', new URLSearchParams(), {
+  full_name: '',
+  mobile: '123',
+});
+assert.strictEqual(invalidLead.status, 400, 'Invalid lead payload must return 400');
+console.log('✅ 9. Security Lockdown (401 on unauthenticated /me and /staff, 400 validation): Verified');
+
+console.log('\n🎉 ALL STANDALONE TEST SUITES COMPLETED AND VERIFIED SUCCESSFULLY!');

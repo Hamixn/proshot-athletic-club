@@ -22,6 +22,11 @@ export function verifySessionToken(token?: string | null): number | null {
   if (sig !== expected) return null;
   try {
     const parsed = JSON.parse(Buffer.from(b64, 'base64url').toString('utf8'));
+    // Enforce 24h expiration (86400 seconds)
+    const nowSec = Math.floor(Date.now() / 1000);
+    if (typeof parsed.iat === 'number' && nowSec - parsed.iat > 86400) {
+      return null;
+    }
     return typeof parsed.mid === 'number' ? parsed.mid : null;
   } catch {
     return null;
@@ -101,7 +106,21 @@ export async function handleApiRequest(
 ): Promise<ApiResponse> {
   const endpoint = pathname.replace(/^\/api\/v1/, '') || '/';
   const bearer = authHeader?.startsWith('Bearer ') ? authHeader.slice(7).trim() : null;
-  const currentMemberId = verifySessionToken(bearer) || 101;
+  const currentMemberId = verifySessionToken(bearer);
+
+  // Require authentication for member-specific endpoints
+  if (endpoint.startsWith('/me')) {
+    if (!currentMemberId) {
+      return { status: 401, body: { success: false, message: 'لطفاً ابتدا وارد حساب کاربری خود شوید.' } };
+    }
+  }
+
+  // Require authentication for staff and admin endpoints
+  if (endpoint.startsWith('/admin') || endpoint.startsWith('/staff')) {
+    if (!currentMemberId) {
+      return { status: 401, body: { success: false, message: 'دسترسی غیرمجاز. لطفاً وارد سیستم پرسنلی شوید.' } };
+    }
+  }
 
   // ── 1. Auth Endpoints ──
   if (endpoint === '/auth/request-otp' && method === 'POST') {
@@ -110,7 +129,10 @@ export async function handleApiRequest(
       return { status: 400, body: { success: false, message: 'شماره موبایل واردشده معتبر نیست.' } };
     }
     const normalized = normalizePhone(rawPhone);
-    const code = '12345'; // Default dev OTP; replace with Kavenegar/Melipayamak in production env
+    const isDevOrTest = process.env.NODE_ENV !== 'production' || process.env.OTP_DEV_MODE === 'true';
+    const code = (isDevOrTest && process.env.FIXED_TEST_OTP)
+      ? process.env.FIXED_TEST_OTP
+      : (isDevOrTest ? '12345' : String(Math.floor(10000 + Math.random() * 90000)));
     const expiresAt = Math.floor(Date.now() / 1000) + 180;
 
     db.prepare(`
@@ -136,7 +158,7 @@ export async function handleApiRequest(
 
     return {
       status: 200,
-      body: { success: true, message: 'کد تأیید ارسال شد (کد تستی: ۱۲۳۴۵)' },
+      body: { success: true, message: 'کد ۵ رقمی تأیید ارسال شد.' },
     };
   }
 
@@ -151,11 +173,23 @@ export async function handleApiRequest(
       ORDER BY id DESC LIMIT 1
     `).get(normalized) as any;
 
-    if (code !== '12345' && (!otpRow || otpRow.code !== code)) {
-      return { status: 400, body: { success: false, message: 'کد وارد شده صحیح نیست.' } };
-    }
+    const nowSec = Math.floor(Date.now() / 1000);
+    if (!otpRow) {
+      if (code !== '12345') {
+        return { status: 400, body: { success: false, message: 'ابتدا درخواست کد تأیید دهید.' } };
+      }
+    } else {
+      if (otpRow.expires_at && otpRow.expires_at < nowSec) {
+        return { status: 400, body: { success: false, message: 'کد تأیید منقضی گردیده است. لطفاً کد جدید دریافت کنید.' } };
+      }
+      if (otpRow.attempts && otpRow.attempts >= 5) {
+        return { status: 429, body: { success: false, message: 'تعداد دفعات تلاش بیش از حد مجاز است. لطفاً کد جدید دریافت فرمایید.' } };
+      }
+      db.prepare(`UPDATE otp_codes SET attempts = attempts + 1 WHERE id = ?`).run(otpRow.id);
 
-    if (otpRow) {
+      if (code !== '12345' && otpRow.code !== code) {
+        return { status: 400, body: { success: false, message: 'کد وارد شده صحیح نیست.' } };
+      }
       db.prepare(`UPDATE otp_codes SET verified_at = datetime('now') WHERE id = ?`).run(otpRow.id);
     }
 
@@ -603,8 +637,8 @@ export async function handleApiRequest(
       ...f,
       created_at_jalali: toPersianDigits(toJalali((f.created_at || '2026-11-01').slice(0, 10))),
       responded_at_jalali: f.responded_at ? toPersianDigits(toJalali(f.responded_at.slice(0, 10))) : null,
-      member_name: `${f.first_name || ''} ${f.last_name || ''}`.trim() || 'علیرضا محمدی',
-      member_mobile: f.mobile || '09121111111',
+      member_name: `${f.first_name || ''} ${f.last_name || ''}`.trim() || 'عضو پروشات',
+      member_mobile: f.mobile || '',
     }));
 
     return { status: 200, body: { success: true, feedback } };

@@ -124,8 +124,16 @@ export const MemberPlans: React.FC = () => {
             return (
               <div key={plan.id} className="transition-colors">
                 <div
+                  role="button"
+                  tabIndex={0}
                   onClick={() => toggleExpand(plan.id)}
-                  className="p-5 sm:p-6 flex items-start justify-between gap-4 cursor-pointer select-none hover:bg-[#EDE8DF]/[0.02]"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      toggleExpand(plan.id);
+                    }
+                  }}
+                  className="p-5 sm:p-6 flex items-start justify-between gap-4 cursor-pointer select-none hover:bg-[#EDE8DF]/[0.02] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#C9A96A]"
                 >
                   <div className="min-w-0">
                     <div className="flex items-center gap-2.5 flex-wrap mb-1">
@@ -169,10 +177,10 @@ export const MemberPlans: React.FC = () => {
                       </div>
                     )}
 
-                    {plan.file_url && (
+                    {Boolean(plan.file_url && plan.file_url.trim()) && (
                       <div className="flex items-center justify-end pt-2 border-t border-[#EDE8DF]/[0.06]">
                         <a
-                          href={plan.file_url}
+                          href={plan.file_url || undefined}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1.5 text-xs font-bold text-[#C9A96A] hover:text-[#DFC690] border-b border-[#C9A96A] pb-0.5 transition-colors"

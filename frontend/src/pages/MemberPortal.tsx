@@ -34,14 +34,20 @@ export const MemberPortal: React.FC<MemberPortalProps> = ({ onBackToSite }) => {
         .then((res) => {
           if (res.member) setMember(res.member);
         })
-        .catch(() => {});
+        .catch((err) => {
+          console.error('Failed to load member profile:', err);
+        });
     }
   }, [isLoggedIn]);
 
   const handlePhoneSubmit = async (phone: string) => {
     setCurrentPhone(phone);
-    await requestOtp(phone);
-    setStep('otp');
+    try {
+      await requestOtp(phone);
+      setStep('otp');
+    } catch {
+      // Stay on phone step; error is displayed via authError
+    }
   };
 
   const handleOtpVerify = async (code: string) => {

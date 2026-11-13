@@ -29,8 +29,22 @@ const MIME_TYPES: Record<string, string> = {
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url || '/', `http://${req.headers.host || 'localhost'}`);
 
-  // CORS headers for local Vite dev server
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // CORS headers
+  const allowedOrigins = [
+    'https://proshotgym.ir',
+    'https://www.proshotgym.ir',
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+    'http://localhost:3001',
+    'http://127.0.0.1:3001',
+  ];
+  const origin = req.headers.origin;
+  if (origin && (allowedOrigins.includes(origin) || origin.endsWith('.proshotgym.ir') || origin.endsWith('.github.io'))) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Vary', 'Origin');
+  } else if (!origin) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+  }
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
@@ -43,8 +57,19 @@ const server = http.createServer(async (req, res) => {
   // Handle REST API
   if (url.pathname.startsWith('/api/v1')) {
     let rawBody = '';
+    let bodyTooLarge = false;
     for await (const chunk of req) {
       rawBody += chunk;
+      if (rawBody.length > 1_048_576) {
+        bodyTooLarge = true;
+        break;
+      }
+    }
+
+    if (bodyTooLarge) {
+      res.writeHead(413, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({ success: false, message: 'حجم داده بیش از ۱ مگابایت است.' }));
+      return;
     }
     let parsedBody: any = {};
     if (rawBody) {

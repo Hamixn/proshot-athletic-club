@@ -32,7 +32,7 @@ export const OtpForm: React.FC<OtpFormProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (code.trim().length >= 4) {
+    if (code.trim().length === 5) {
       await onVerify(code.trim());
     }
   };
@@ -71,11 +71,11 @@ export const OtpForm: React.FC<OtpFormProps> = ({
         maxLength={5}
         className="text-center text-3xl font-editorial font-semibold text-[#C9A96A] py-3"
         style={{ letterSpacing: '0.45em' }}
-        placeholder="12345"
+        placeholder="•••••"
         value={code}
         onChange={(e) => setCode(e.target.value)}
         disabled={loading}
-        helperText="کد محیط پیش‌نمایش: ۱۲۳۴۵"
+        helperText="کد ۵ رقمی ارسال‌شده به تلفن همراه خود را وارد نمایید."
         autoFocus
       />
 
@@ -85,7 +85,7 @@ export const OtpForm: React.FC<OtpFormProps> = ({
         size="lg"
         className="w-full"
         loading={loading}
-        disabled={code.length < 4}
+        disabled={code.trim().length !== 5}
       >
         تأیید و ورود به پرونده
       </Button>

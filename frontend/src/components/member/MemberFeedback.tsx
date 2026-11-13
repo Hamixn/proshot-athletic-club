@@ -145,6 +145,7 @@ export const MemberFeedback: React.FC = () => {
                     <button
                       key={star}
                       type="button"
+                      aria-label={`${star} ستاره از ۵`}
                       onClick={() => setRating(star)}
                       onMouseEnter={() => setHoverRating(star)}
                       onMouseLeave={() => setHoverRating(0)}

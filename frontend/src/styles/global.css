@@ -162,6 +162,7 @@ html[data-motion="lite"] .parallax-frame__img {
 /* Portrait Mobile Triptych Pan: GPU-composited transform-only pan across all 3 columns */
 @media (max-aspect-ratio: 1/1) {
   .hero-video {
+    width: 177.78vh !important;
     width: 177.78svh !important;
     max-width: none !important;
     height: 100% !important;
@@ -177,6 +178,7 @@ html[data-motion="lite"] .parallax-frame__img {
     transform: translate3d(0, 0, 0);
   }
   100% {
+    transform: translate3d(calc(100vw - 177.78vh), 0, 0);
     transform: translate3d(calc(100vw - 177.78svh), 0, 0);
   }
 }

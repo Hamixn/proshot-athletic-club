@@ -51,7 +51,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
   const primarySrc = isPremium
     ? resolveAssetPath('logo-premium.png')
     : resolveAssetPath('logo-standard.png');
-  const fallbackSrc = isPremium ? '/logo-premium.png' : '/logo-standard.png';
+  const fallbackSrc = isPremium ? './assets/logo-premium.png' : './assets/logo-standard.png';
 
   return (
     <div className={`inline-flex flex-col items-center select-none ${className}`}>

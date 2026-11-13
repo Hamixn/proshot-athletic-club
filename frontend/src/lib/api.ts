@@ -12,11 +12,10 @@ export class ApiError extends Error {
 
 function isStaticPreviewHost(): boolean {
   if (typeof window === 'undefined') return false;
+  if ((window as any).proshotMC?.isMock === true) return true;
   const { hostname, protocol } = window.location;
   return (
     hostname.endsWith('github.io') ||
-    hostname === 'proshotgym.ir' ||
-    hostname.endsWith('.proshotgym.ir') ||
     protocol === 'file:'
   );
 }
@@ -202,32 +201,6 @@ const mockState: {
   ],
 };
 
-if (typeof window !== 'undefined') {
-  (window as any).setMockBranchSlug = (slug: string) => {
-    localStorage.setItem('ps_mock_branch_slug', slug);
-    const found = mockState.branches.find((b) => b.slug === slug) || mockState.branches[0];
-    mockState.membership.branch_id = found.id;
-    mockState.membership.branch = {
-      id: found.id,
-      name: found.name,
-      slug: found.slug,
-      gender_policy: found.gender_policy,
-    };
-    mockState.membership.plan_name =
-      found.slug === 'premium'
-        ? 'اشتراک ۳ ماهه شعبه پریمیوم (سروناز)'
-        : `اشتراک ۳ ماهه شعبه ${found.name}`;
-
-    if (!isStaticPreviewHost()) {
-      fetch('/api/v1/me/switch-branch', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug }),
-      }).catch(() => {});
-    }
-  };
-}
-
 function handleMockRequest(endpoint: string, _method: string, _body?: any): any {
   if (endpoint === '/auth/request-otp') {
     const rawPhone = String(_body?.phone || '');
@@ -237,13 +210,13 @@ function handleMockRequest(endpoint: string, _method: string, _body?: any): any 
     const cleanLocal = toLatinDigits(rawPhone).replace(/^\+98/, '0').replace(/\s+/g, '');
     mockState.member.mobile = cleanLocal;
     mockState.member.mobile_normalized = normalizePhone(rawPhone);
-    return { success: true, message: 'کد تأیید ارسال شد (کد پیش‌نمایش: ۱۲۳۴۵)' };
+    return { success: true, message: 'کد تأیید ارسال شد' };
   }
 
   if (endpoint === '/auth/verify-otp') {
     const code = toLatinDigits(String(_body?.code || '')).trim();
     if (code !== '12345') {
-      throw new ApiError('کد وارد شده صحیح نیست. در نسخه پیش‌نمایش کد ۱۲۳۴۵ را وارد کنید.', 400);
+      throw new ApiError('کد وارد شده صحیح نیست. لطفاً مجدداً بررسی فرمایید.', 400);
     }
     mockState.isLoggedIn = true;
     return {
@@ -475,6 +448,10 @@ function handleMockRequest(endpoint: string, _method: string, _body?: any): any 
 
 export const api = {
   getBaseUrl(): string {
+    const configured = (typeof window !== 'undefined' && (window as any).proshotMC?.apiBase);
+    if (configured) {
+      return configured.replace(/\/$/, '');
+    }
     return '/api/v1';
   },
 

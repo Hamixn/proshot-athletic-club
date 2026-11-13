@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, CheckCircle2, Phone, User, Sparkles } from 'lucide-react';
 import { SHIRAZ_BRANCHES } from '../../data/branches';
 import { api } from '../../lib/api';
+import { isValidIranianMobile } from '../../lib/phone';
 
 interface ConsultationModalProps {
   isOpen: boolean;
@@ -29,15 +30,36 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') resetAndClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     setError(null);
+
+    const cleanName = fullName.trim();
+    if (cleanName.length < 2) {
+      setError('لطفاً نام و نام خانوادگی خود را کامل وارد فرمایید.');
+      return;
+    }
+
+    if (!isValidIranianMobile(mobile)) {
+      setError('شماره تلفن همراه نامعتبر است. نمونه صحیح: ۰۹۱۷۱۲۳۴۵۶۷');
+      return;
+    }
+
+    setLoading(true);
     try {
       const res = await api.post('/leads', {
-        full_name: fullName,
+        full_name: cleanName,
         mobile,
         branch_slug: branchSlug,
         goal,
@@ -60,6 +82,9 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
 
   return (
     <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="consultation-title"
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4"
       onClick={resetAndClose}
     >
@@ -69,6 +94,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
       >
         <button
           type="button"
+          aria-label="بستن پنجره مشاوره"
           onClick={resetAndClose}
           className="absolute top-4 left-4 sm:top-5 sm:left-5 w-8 h-8 sm:w-9 sm:h-9 border border-[#F2EFE9]/15 flex items-center justify-center text-[#9A958C] hover:text-[#F2EFE9] hover:border-[#C9A96A] transition-colors cursor-pointer"
         >
@@ -79,7 +105,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
           <Sparkles className="w-3.5 h-3.5" />
           <span>مشاوره اختصاصی عضویت و بازدید حضوری کلوب</span>
         </div>
-        <h3 className="text-xl sm:text-2xl font-black text-[#F2EFE9] mb-1.5 sm:mb-2">
+        <h3 id="consultation-title" className="text-xl sm:text-2xl font-black text-[#F2EFE9] mb-1.5 sm:mb-2">
           رزرو ارزیابی و مشاوره عضویت در شیراز
         </h3>
         <p className="text-[11px] sm:text-xs text-[#9A958C] leading-relaxed mb-4 sm:mb-6">
