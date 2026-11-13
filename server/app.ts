@@ -679,5 +679,41 @@ export async function handleApiRequest(
     return { status: 200, body: { success: true, leads } };
   }
 
+  // ── 8. Careers & Recruitment Applications ──
+  if (endpoint === '/careers' && method === 'POST') {
+    const fullName = String(body?.full_name || '').trim();
+    const rawMobile = String(body?.mobile || '').trim();
+    const role = String(body?.role || 'مربی فیتنس و بدنسازی');
+    const branchSlug = String(body?.branch_slug || 'all');
+    const workBackground = String(body?.work_background || '').trim();
+    const certifications = String(body?.certifications || '').trim();
+
+    if (!fullName || !isValidIranianMobile(rawMobile) || !workBackground) {
+      return {
+        status: 400,
+        body: { success: false, message: 'لطفاً نام، شماره موبایل و سوابق کاری را به‌طور کامل وارد فرمایید.' },
+      };
+    }
+
+    const info = db.prepare(`
+      INSERT INTO career_applications (full_name, mobile, role, branch_slug, work_background, certifications)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `).run(fullName, normalizePhone(rawMobile), role, branchSlug, workBackground, certifications);
+
+    return {
+      status: 200,
+      body: {
+        success: true,
+        application_id: Number(info.lastInsertRowid),
+        message: 'درخواست همکاری شما با موفقیت ثبت شد. مدیریت منابع انسانی پس از بررسی سوابق با شما تماس خواهد گرفت.',
+      },
+    };
+  }
+
+  if (endpoint === '/staff/careers' && method === 'GET') {
+    const applications = db.prepare('SELECT * FROM career_applications ORDER BY id DESC LIMIT 100').all();
+    return { status: 200, body: { success: true, applications } };
+  }
+
   return { status: 404, body: { success: false, message: `Endpoint not found: ${method} ${endpoint}` } };
 }

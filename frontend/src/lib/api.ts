@@ -443,6 +443,23 @@ function handleMockRequest(endpoint: string, _method: string, _body?: any): any 
     };
   }
 
+  if (endpoint === '/careers' && _method === 'POST') {
+    if (!_body?.full_name || !String(_body.full_name).trim()) {
+      throw new ApiError('لطفاً نام و نام خانوادگی خود را وارد نمایید.', 400);
+    }
+    if (!isValidIranianMobile(String(_body?.mobile || ''))) {
+      throw new ApiError('شماره موبایل واردشده معتبر نیست.', 400);
+    }
+    if (!_body?.work_background || !String(_body.work_background).trim()) {
+      throw new ApiError('لطفاً خلاصه سوابق کاری خود را ذکر فرمایید.', 400);
+    }
+    return {
+      success: true,
+      application_id: Date.now(),
+      message: 'درخواست همکاری شما با موفقیت ثبت شد. مدیریت منابع انسانی پروشات پس از بررسی رزومه با شما تماس خواهد گرفت.',
+    };
+  }
+
   return { success: true };
 }
 

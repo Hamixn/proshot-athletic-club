@@ -13,8 +13,9 @@ import {
 } from '../components/motion/Motion';
 import { BrandLogo, resolveAssetPath } from '../components/ui/BrandLogo';
 import { Button } from '../components/ui/Button';
-import { ArrowUpLeft, Phone, MapPin, Menu, X, Sparkles } from 'lucide-react';
-import { ConsultationModal } from '../components/landing/ConsultationModal';
+import { ArrowUpLeft, Phone, MapPin, Menu, X } from 'lucide-react';
+import { BranchReceptionModal } from '../components/landing/BranchReceptionModal';
+import { CareersSection } from '../components/landing/CareersSection';
 
 export interface LandingPageProps {
   onNavigate: (view: 'landing' | 'member' | 'staff', branchSlug?: string) => void;
@@ -29,7 +30,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
     () => SHIRAZ_BRANCHES.find((b) => b.slug === activeBranchSlug) || SHIRAZ_BRANCHES[0]
   );
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
+  const [isReceptionOpen, setIsReceptionOpen] = useState(false);
 
   const heroRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -96,7 +97,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </span>
             </div>
 
-            <nav className="hidden md:flex items-center gap-10 text-xs font-extrabold text-[#8A857B]">
+            <nav className="hidden md:flex items-center gap-7 lg:gap-9 text-xs font-extrabold text-[#8A857B]">
               <a href="#clubs" className="hover:text-[#F2EFE9] transition-colors">
                 شعب پنج‌گانه شیراز
               </a>
@@ -107,21 +108,21 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 مجموعه آبی و ریکاوری
               </a>
               <a href="#portal" className="hover:text-[#F2EFE9] transition-colors">
-                پورتال دیجیتال اعضا
+                پورتال اعضا
               </a>
-              <a href="#contact" className="hover:text-[#F2EFE9] transition-colors">
-                اطلاعات تماس
+              <a href="#careers" className="hover:text-[#C9A96A] transition-colors">
+                همکاری و استخدام
               </a>
             </nav>
 
             <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
               <button
                 type="button"
-                onClick={() => setIsConsultationOpen(true)}
-                className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2 border border-[#C9A96A]/45 text-[#C9A96A] text-xs font-bold hover:bg-[#C9A96A] hover:text-[#070708] transition-colors cursor-pointer"
+                onClick={() => setIsReceptionOpen(true)}
+                className="hidden lg:inline-flex items-center gap-1.5 px-3.5 py-2 border border-[#C9A96A]/60 text-[#C9A96A] text-xs font-bold hover:bg-[#C9A96A] hover:text-[#070708] transition-colors cursor-pointer"
               >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>مشاوره عضویت</span>
+                <Phone className="w-3.5 h-3.5" />
+                <span>تماس با پذیرش شعب</span>
               </button>
 
               <Button
@@ -180,6 +181,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 پورتال دیجیتال اعضا
               </a>
               <a
+                href="#careers"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block py-2.5 border-b border-[#F2EFE9]/10 text-[#C9A96A] font-bold"
+              >
+                فرصت‌های شغلی و استخدام
+              </a>
+              <a
                 href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
                 className="block py-2.5 border-b border-[#F2EFE9]/10 text-[#F2EFE9]"
@@ -192,12 +200,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   type="button"
                   onClick={() => {
                     setMobileMenuOpen(false);
-                    setIsConsultationOpen(true);
+                    setIsReceptionOpen(true);
                   }}
                   className="w-full py-3 bg-[#C9A96A] text-[#070708] text-xs font-extrabold flex items-center justify-center gap-2"
                 >
-                  <Sparkles className="w-4 h-4" />
-                  <span>درخواست مشاوره و بازدید حضوری</span>
+                  <Phone className="w-4 h-4" />
+                  <span>تماس با پذیرش شعب و استعلام شهریه</span>
                 </button>
                 <button
                   type="button"
@@ -312,11 +320,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   <Magnetic className="flex-1 sm:flex-initial">
                     <button
                       type="button"
-                      onClick={() => setIsConsultationOpen(true)}
+                      onClick={() => setIsReceptionOpen(true)}
                       className="w-full sm:w-auto px-2.5 sm:px-6 py-2 sm:py-3.5 h-9 sm:h-12 inline-flex items-center justify-center gap-1 sm:gap-2 rounded-[2px] border border-[#C9A96A]/60 bg-[#070708]/90 sm:bg-[#070708]/75 sm:backdrop-blur-md text-[#C9A96A] text-[11px] sm:text-sm font-bold hover:bg-[#C9A96A] hover:text-[#070708] transition-colors cursor-pointer text-center whitespace-nowrap"
                     >
-                      <Sparkles className="w-3.5 h-3.5 shrink-0" />
-                      <span>درخواست مشاوره</span>
+                      <Phone className="w-3.5 h-3.5 shrink-0" />
+                      <span>تماس با پذیرش و شهریه</span>
                     </button>
                   </Magnetic>
                 </div>
@@ -672,15 +680,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   </div>
                 </div>
 
-                {/* Portal & Tour Actions for Selected Branch */}
+                {/* Portal & Contact Actions for Selected Branch */}
                 <div className="pt-4 sm:pt-6 border-t border-[#F2EFE9]/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-4">
-                  <button
-                    type="button"
-                    onClick={() => setIsConsultationOpen(true)}
-                    className="px-3.5 py-2.5 sm:px-4 sm:py-3 border border-[#C9A96A]/45 text-[#C9A96A] text-[11px] sm:text-xs font-bold hover:bg-[#C9A96A] hover:text-[#070708] transition-colors cursor-pointer text-center"
+                  <a
+                    href={`tel:${selectedBranch.phone || '07138440107'}`}
+                    className="px-3.5 py-2.5 sm:px-4 sm:py-3 border border-[#C9A96A]/60 bg-[#C9A96A]/10 text-[#C9A96A] text-[11px] sm:text-xs font-bold hover:bg-[#C9A96A] hover:text-[#070708] transition-colors cursor-pointer text-center inline-flex items-center justify-center gap-2"
                   >
-                    هماهنگی بازدید از {selectedBranch.shortName}
-                  </button>
+                    <Phone className="w-3.5 h-3.5" />
+                    <span>تماس مستقیم با پذیرش {selectedBranch.shortName}</span>
+                  </a>
 
                   <Button
                     variant="primary"
@@ -964,6 +972,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </section>
 
         {/* =====================================================================
+            5. CAREERS & RECRUITMENT SECTION
+            ===================================================================== */}
+        <CareersSection />
+
+        {/* =====================================================================
             6. SHIRAZ DIRECTORY FOOTER + RISING ARCHITECTURAL WORDMARK
             ===================================================================== */}
         <footer
@@ -1058,12 +1071,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <span className="text-[#3A3835]">•</span>
               <a href="#portal" className="hover:text-[#EDE8DF] transition-colors">پورتال اعضا</a>
               <span className="text-[#3A3835]">•</span>
+              <a href="#careers" className="hover:text-[#C9A96A] transition-colors">فرصت‌های استخدام</a>
+              <span className="text-[#3A3835]">•</span>
               <button
                 type="button"
-                onClick={() => setIsConsultationOpen(true)}
+                onClick={() => setIsReceptionOpen(true)}
                 className="hover:text-[#C9A96A] transition-colors cursor-pointer"
               >
-                مشاوره و بازدید حضوری
+                تماس با پذیرش شعب
               </button>
             </div>
 
@@ -1102,10 +1117,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </div>
         </footer>
 
-        <ConsultationModal
-          isOpen={isConsultationOpen}
+        <BranchReceptionModal
+          isOpen={isReceptionOpen}
           defaultBranchSlug={selectedBranch.slug}
-          onClose={() => setIsConsultationOpen(false)}
+          onClose={() => setIsReceptionOpen(false)}
         />
       </div>
     </MotionRoot>

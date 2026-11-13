@@ -34,6 +34,7 @@ export const SCHEMA_TABLES = [
   'member_plans',
   'feedback',
   'consultation_leads',
+  'career_applications',
 ] as const;
 
 export function initDatabase(): void {
@@ -240,6 +241,19 @@ export function initDatabase(): void {
       created_at TEXT NOT NULL DEFAULT (datetime('now'))
     );
 
+    -- 16. Career & Job Applications
+    CREATE TABLE IF NOT EXISTS career_applications (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      full_name TEXT NOT NULL,
+      mobile TEXT NOT NULL,
+      role TEXT NOT NULL,
+      branch_slug TEXT NOT NULL,
+      work_background TEXT NOT NULL,
+      certifications TEXT DEFAULT NULL,
+      status TEXT NOT NULL DEFAULT 'new',
+      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+
     -- Essential Performance Indexes
     CREATE INDEX IF NOT EXISTS idx_members_mobile ON members(mobile_normalized);
     CREATE INDEX IF NOT EXISTS idx_memberships_member ON memberships(member_id, is_current);
@@ -248,6 +262,7 @@ export function initDatabase(): void {
     CREATE INDEX IF NOT EXISTS idx_qr_nonces_nonce ON qr_nonces(nonce);
     CREATE INDEX IF NOT EXISTS idx_otp_mobile ON otp_codes(mobile_normalized);
     CREATE INDEX IF NOT EXISTS idx_leads_created ON consultation_leads(created_at);
+    CREATE INDEX IF NOT EXISTS idx_careers_created ON career_applications(created_at);
   `);
 
   seedInitialData();

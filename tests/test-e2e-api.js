@@ -174,4 +174,24 @@ const invalidLead = await handleApiRequest('POST', '/api/v1/leads', new URLSearc
 assert.strictEqual(invalidLead.status, 400, 'Invalid lead payload must return 400');
 console.log('✅ 9. Security Lockdown (401 on unauthenticated /me and /staff, 400 validation): Verified');
 
+// 10. Verify Careers & Recruitment API (/api/v1/careers)
+const careerRes = await handleApiRequest('POST', '/api/v1/careers', new URLSearchParams(), {
+  full_name: 'امیرحسین رضایی',
+  mobile: '09171234567',
+  role: 'مربی بدنسازی و فیتنس',
+  branch_slug: 'plus-men',
+  work_background: '۵ سال سابقه مربیگری در باشگاه‌های شیراز',
+  certifications: 'مدرک درجه ۲ فدراسیون بدنسازی',
+});
+assert.strictEqual(careerRes.status, 200);
+assert.ok(careerRes.body.application_id > 0);
+
+const invalidCareer = await handleApiRequest('POST', '/api/v1/careers', new URLSearchParams(), {
+  full_name: 'تست',
+  mobile: '0000',
+  work_background: '',
+});
+assert.strictEqual(invalidCareer.status, 400, 'Invalid career application must return 400');
+console.log('✅ 10. Careers & Recruitment API: Verified');
+
 console.log('\n🎉 ALL STANDALONE TEST SUITES COMPLETED AND VERIFIED SUCCESSFULLY!');
