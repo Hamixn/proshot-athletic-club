@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Member, MemberPlan } from '../../types/member';
 import { api } from '../../lib/api';
+import { getCurrentJalaliMonthName } from '../../lib/jalali';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
@@ -25,7 +26,7 @@ export const StaffPlanManager: React.FC<StaffPlanManagerProps> = ({ branchId }) 
   const [showForm, setShowForm] = useState(false);
   const [planType, setPlanType] = useState<'workout' | 'diet' | 'both'>('workout');
   const [title, setTitle] = useState('');
-  const [validMonth, setValidMonth] = useState('آبان ۱۴۰۵');
+  const [validMonth, setValidMonth] = useState(() => getCurrentJalaliMonthName());
   const [content, setContent] = useState('');
   const [fileName, setFileName] = useState('');
   const [fileUrl, setFileUrl] = useState('');

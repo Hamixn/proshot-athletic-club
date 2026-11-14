@@ -30,3 +30,14 @@ export function toJalali(dateStr: string | Date | null | undefined): string {
 export function toJalaliPersian(dateStr: string | Date | null | undefined): string {
   return toPersianDigits(toJalali(dateStr));
 }
+
+const PERSIAN_MONTH_NAMES = [
+  'فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور',
+  'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'
+];
+
+export function getCurrentJalaliMonthName(date: Date = new Date()): string {
+  const { jy, jm } = jalaali.toJalaali(date.getFullYear(), date.getMonth() + 1, date.getDate());
+  const monthName = PERSIAN_MONTH_NAMES[jm - 1] || '';
+  return `${monthName} ${toPersianDigits(jy)}`;
+}

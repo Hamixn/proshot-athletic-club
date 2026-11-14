@@ -70,7 +70,7 @@ export const CareersSection: React.FC = () => {
   };
 
   return (
-    <section id="careers" className="relative py-16 sm:py-24 bg-[#0A0A0C] border-t border-[#F2EFE9]/10">
+    <section id="careers" className="relative py-16 sm:py-24 bg-[#0A0A0C] border-t border-[#F2EFE9]/10 scroll-mt-16 sm:scroll-mt-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
@@ -120,14 +120,14 @@ export const CareersSection: React.FC = () => {
                   نام و نام خانوادگی <span className="text-[#C9A96A]">*</span>
                 </label>
                 <div className="relative">
-                  <User className="w-4 h-4 text-[#8A857B] absolute right-3.5 top-1/2 -translate-y-1/2" />
+                  <User className="w-4 h-4 text-[#8A857B] absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                   <input
                     type="text"
                     required
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="مثال: رضا کریمی"
-                    className="w-full bg-[#141418] border border-[#F2EFE9]/15 pr-10 pl-3.5 py-2.5 sm:py-3 text-xs sm:text-sm text-[#F2EFE9] focus:outline-none focus:border-[#C9A96A]"
+                    className="w-full bg-[#141418] border border-[#F2EFE9]/15 hover:border-[#F2EFE9]/30 pr-10 pl-3.5 py-2.5 sm:py-3 text-xs sm:text-sm text-[#F2EFE9] focus:outline-none focus:border-[#C9A96A] focus:ring-1 focus:ring-[#C9A96A]/50 transition-all rounded-[2px]"
                   />
                 </div>
               </div>
@@ -138,7 +138,7 @@ export const CareersSection: React.FC = () => {
                   شماره تلفن همراه <span className="text-[#C9A96A]">*</span>
                 </label>
                 <div className="relative">
-                  <Phone className="w-4 h-4 text-[#8A857B] absolute right-3.5 top-1/2 -translate-y-1/2" />
+                  <Phone className="w-4 h-4 text-[#8A857B] absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                   <input
                     type="tel"
                     required
@@ -146,7 +146,7 @@ export const CareersSection: React.FC = () => {
                     value={mobile}
                     onChange={(e) => setMobile(e.target.value)}
                     placeholder="09171234567"
-                    className="w-full bg-[#141418] border border-[#F2EFE9]/15 pr-10 pl-3.5 py-2.5 sm:py-3 text-xs sm:text-sm text-left font-mono text-[#F2EFE9] focus:outline-none focus:border-[#C9A96A]"
+                    className="w-full bg-[#141418] border border-[#F2EFE9]/15 hover:border-[#F2EFE9]/30 pr-10 pl-3.5 py-2.5 sm:py-3 text-xs sm:text-sm text-left font-mono text-[#F2EFE9] focus:outline-none focus:border-[#C9A96A] focus:ring-1 focus:ring-[#C9A96A]/50 transition-all rounded-[2px]"
                   />
                 </div>
               </div>
@@ -163,10 +163,10 @@ export const CareersSection: React.FC = () => {
                   <select
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
-                    className="w-full bg-[#141418] border border-[#F2EFE9]/15 pr-10 pl-3.5 py-2.5 sm:py-3 text-xs sm:text-sm text-[#F2EFE9] focus:outline-none focus:border-[#C9A96A]"
+                    className="w-full bg-[#141418] border border-[#F2EFE9]/15 hover:border-[#F2EFE9]/30 pr-10 pl-3.5 py-2.5 sm:py-3 text-xs sm:text-sm text-[#F2EFE9] focus:outline-none focus:border-[#C9A96A] focus:ring-1 focus:ring-[#C9A96A]/50 transition-all rounded-[2px] cursor-pointer"
                   >
                     {CAREER_ROLES.map((r) => (
-                      <option key={r} value={r}>
+                      <option key={r} value={r} className="bg-[#141418] text-[#F2EFE9]">
                         {r}
                       </option>
                     ))}
@@ -184,11 +184,11 @@ export const CareersSection: React.FC = () => {
                   <select
                     value={branchSlug}
                     onChange={(e) => setBranchSlug(e.target.value)}
-                    className="w-full bg-[#141418] border border-[#F2EFE9]/15 pr-10 pl-3.5 py-2.5 sm:py-3 text-xs sm:text-sm text-[#F2EFE9] focus:outline-none focus:border-[#C9A96A]"
+                    className="w-full bg-[#141418] border border-[#F2EFE9]/15 hover:border-[#F2EFE9]/30 pr-10 pl-3.5 py-2.5 sm:py-3 text-xs sm:text-sm text-[#F2EFE9] focus:outline-none focus:border-[#C9A96A] focus:ring-1 focus:ring-[#C9A96A]/50 transition-all rounded-[2px] cursor-pointer"
                   >
-                    <option value="all">تمام شعب پروشات (امکان فعالیت در هر شعبه)</option>
+                    <option value="all" className="bg-[#141418] text-[#F2EFE9]">تمام شعب پروشات (امکان فعالیت در هر شعبه)</option>
                     {SHIRAZ_BRANCHES.map((b) => (
-                      <option key={b.slug} value={b.slug}>
+                      <option key={b.slug} value={b.slug} className="bg-[#141418] text-[#F2EFE9]">
                         {b.name} — {b.district}
                       </option>
                     ))}
@@ -199,16 +199,21 @@ export const CareersSection: React.FC = () => {
 
             {/* Work Background */}
             <div>
-              <label className="block text-[11px] sm:text-xs font-bold text-[#EDE8DF] mb-1.5">
-                سوابق کاری و باشگاه‌های قبلی <span className="text-[#C9A96A]">*</span>
-              </label>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="block text-[11px] sm:text-xs font-bold text-[#EDE8DF]">
+                  سوابق کاری و باشگاه‌های قبلی <span className="text-[#C9A96A]">*</span>
+                </label>
+                <span className={`text-[10px] font-mono ${workBackground.trim().length >= 10 ? 'text-[#4ADE80]' : 'text-[#8A857B]'}`}>
+                  {workBackground.trim().length >= 10 ? '✓ تکمیل شد' : `${workBackground.trim().length}/۱۰ کاراکتر`}
+                </span>
+              </div>
               <textarea
                 required
                 rows={3}
                 value={workBackground}
                 onChange={(e) => setWorkBackground(e.target.value)}
                 placeholder="لطفاً نام باشگاه‌ها، مراکز ورزشی، سمت شغلی و مدت زمان فعالیت قبلی خود را شرح دهید..."
-                className="w-full bg-[#141418] border border-[#F2EFE9]/15 p-3 text-xs sm:text-sm text-[#F2EFE9] focus:outline-none focus:border-[#C9A96A] leading-relaxed"
+                className="w-full bg-[#141418] border border-[#F2EFE9]/15 hover:border-[#F2EFE9]/30 p-3 text-xs sm:text-sm text-[#F2EFE9] focus:outline-none focus:border-[#C9A96A] focus:ring-1 focus:ring-[#C9A96A]/50 transition-all rounded-[2px] leading-relaxed"
               />
             </div>
 
@@ -222,14 +227,14 @@ export const CareersSection: React.FC = () => {
                 value={certifications}
                 onChange={(e) => setCertifications(e.target.value)}
                 placeholder="مدارک فدراسیون، سرتیفیکیت‌های بین‌المللی، رشته تحصیلی، یا سایر نکات مرتبط..."
-                className="w-full bg-[#141418] border border-[#F2EFE9]/15 p-3 text-xs sm:text-sm text-[#F2EFE9] focus:outline-none focus:border-[#C9A96A] leading-relaxed"
+                className="w-full bg-[#141418] border border-[#F2EFE9]/15 hover:border-[#F2EFE9]/30 p-3 text-xs sm:text-sm text-[#F2EFE9] focus:outline-none focus:border-[#C9A96A] focus:ring-1 focus:ring-[#C9A96A]/50 transition-all rounded-[2px] leading-relaxed"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3.5 sm:py-4 bg-[#C9A96A] hover:bg-[#d8b97a] text-[#070708] text-xs sm:text-sm font-black transition-colors cursor-pointer disabled:opacity-50 flex items-center justify-center gap-2 rounded-[2px]"
+              className="w-full py-3.5 sm:py-4 bg-[#C9A96A] hover:bg-[#d8b97a] active:scale-[0.99] text-[#070708] text-xs sm:text-sm font-black transition-all cursor-pointer disabled:opacity-50 flex items-center justify-center gap-2 rounded-[2px] shadow-lg shadow-[#C9A96A]/10"
             >
               <Award className="w-4 h-4" />
               <span>{loading ? 'در حال ارسال اطلاعات...' : 'ارسال درخواست همکاری و رزومه'}</span>

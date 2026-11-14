@@ -321,7 +321,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     <button
                       type="button"
                       onClick={() => setIsReceptionOpen(true)}
-                      className="w-full sm:w-auto px-2.5 sm:px-6 py-2 sm:py-3.5 h-9 sm:h-12 inline-flex items-center justify-center gap-1 sm:gap-2 rounded-[2px] border border-[#C9A96A]/60 bg-[#070708]/90 sm:bg-[#070708]/75 sm:backdrop-blur-md text-[#C9A96A] text-[11px] sm:text-sm font-bold hover:bg-[#C9A96A] hover:text-[#070708] transition-colors cursor-pointer text-center whitespace-nowrap"
+                      className="w-full sm:w-auto px-2.5 sm:px-6 py-2 sm:py-3.5 h-9 sm:h-12 inline-flex items-center justify-center gap-1 sm:gap-2 rounded-[2px] border border-[#C9A96A]/60 bg-[#070708]/90 sm:bg-[#070708]/75 sm:backdrop-blur-md text-[#C9A96A] text-[11px] sm:text-sm font-bold hover:bg-[#C9A96A] hover:text-[#070708] hover:shadow-lg hover:shadow-[#C9A96A]/20 transition-all cursor-pointer text-center whitespace-nowrap active:scale-[0.98]"
                     >
                       <Phone className="w-3.5 h-3.5 shrink-0" />
                       <span>تماس با پذیرش و شهریه</span>
@@ -444,7 +444,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         {/* =====================================================================
             3. SHIRAZ 5-CLUB DIRECTORY (Ghost Numerals, Wipe Transitions & Dual Parallax)
             ===================================================================== */}
-        <section id="clubs" className="relative border-b border-[#F2EFE9]/12 overflow-hidden">
+        <section id="clubs" className="relative border-b border-[#F2EFE9]/12 overflow-hidden scroll-mt-16 sm:scroll-mt-20">
           {/* Floating Outlined Ghost Numeral Behind Section */}
           <Parallax
             speed={-65}
@@ -642,10 +642,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                       {selectedBranch.phone ? (
                         <a
                           href={`tel:${selectedBranch.phone}`}
-                          className="text-base sm:text-xl font-black text-[#F2EFE9] hover:text-[#C9A96A] transition-colors block"
+                          className="group inline-flex items-center gap-2.5 text-base sm:text-xl font-black text-[#F2EFE9] hover:text-[#C9A96A] transition-colors"
                           dir="ltr"
                         >
-                          {selectedBranch.phoneDisplay}
+                          <span>{selectedBranch.phoneDisplay}</span>
+                          <span className="text-[10px] font-bold px-2 py-0.5 bg-[#C9A96A]/15 text-[#C9A96A] border border-[#C9A96A]/30 rounded-[2px] group-hover:bg-[#C9A96A] group-hover:text-[#070708] transition-colors">
+                            تماس مستقیم
+                          </span>
                         </a>
                       ) : (
                         <span className="text-xs sm:text-sm font-bold text-[#F2EFE9] block">
@@ -708,7 +711,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         {/* =====================================================================
             4. DISCIPLINES & AMENITIES (Staggered Column Parallax + 3D Tilt Grid)
             ===================================================================== */}
-        <section id="disciplines" className="border-b border-[#F2EFE9]/12 bg-[#09090B] overflow-hidden">
+        <section id="disciplines" className="border-b border-[#F2EFE9]/12 bg-[#09090B] overflow-hidden scroll-mt-16 sm:scroll-mt-20">
           <div className="max-w-[1400px] mx-auto px-3.5 sm:px-10 py-10 sm:py-28 space-y-8 sm:space-y-14">
             <RevealBlock className="flex flex-wrap items-end justify-between gap-3 sm:gap-6">
               <div>
@@ -738,7 +741,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                         enableTilt={true}
                         curtainReveal={true}
                         imgClassName="opacity-50 group-hover:opacity-70"
-                        className="group h-56 sm:h-80 border border-[#F2EFE9]/15 bg-[#070708] p-4 sm:p-8 flex flex-col justify-between"
+                        className="group h-56 sm:h-80 border border-[#F2EFE9]/15 group-hover:border-[#C9A96A]/60 bg-[#070708] p-4 sm:p-8 flex flex-col justify-between transition-colors duration-300"
                       >
                         <div
                           className="absolute inset-0 pointer-events-none"
@@ -781,7 +784,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         {/* =====================================================================
             4.5 EXPANDING ARCHITECTURAL SCENE (Spa & Recovery Choreographed Reveal)
             ===================================================================== */}
-        <div id="recovery">
+        <div id="recovery" className="scroll-mt-16 sm:scroll-mt-20">
           <ScrollScene
             className="border-b border-[#F2EFE9]/12 bg-[#050506]"
             stickyClassName="flex items-center justify-center py-8 sm:py-24"
@@ -865,7 +868,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         {/* =====================================================================
             5. DIGITAL MEMBER PORTAL SECTION (Multi-Plane Brass Hairline Frames)
             ===================================================================== */}
-        <section id="portal" className="border-b border-[#F2EFE9]/12 bg-[#070708] overflow-hidden">
+        <section id="portal" className="border-b border-[#F2EFE9]/12 bg-[#070708] overflow-hidden scroll-mt-16 sm:scroll-mt-20">
           <div className="max-w-[1400px] mx-auto px-3.5 sm:px-10 py-10 sm:py-28">
             <RevealBlock className="grid grid-cols-1 lg:grid-cols-12 border border-[#C9A96A]/40 bg-[#0C0C0E]">
               <div className="lg:col-span-7 p-4 sm:p-12 flex flex-col justify-between space-y-6 sm:space-y-8 border-b lg:border-b-0 lg:border-l border-[#F2EFE9]/12">
@@ -982,7 +985,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         <footer
           id="contact"
           ref={footerRef}
-          className="relative bg-[#050506] pt-10 sm:pt-16 pb-10 sm:pb-12 text-[11px] sm:text-xs text-[#8A857B] overflow-hidden"
+          className="relative bg-[#050506] pt-10 sm:pt-16 pb-10 sm:pb-12 text-[11px] sm:text-xs text-[#8A857B] overflow-hidden scroll-mt-16 sm:scroll-mt-20"
         >
           <div className="relative z-10 max-w-[1400px] mx-auto px-3.5 sm:px-10 space-y-6 sm:space-y-10">
             {/* Top Brand Bar */}

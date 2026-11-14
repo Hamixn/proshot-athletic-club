@@ -96,7 +96,7 @@ export const SHIRAZ_BRANCHES: ShirazBranchInfo[] = [
     phoneDisplay: '۰۷۱-۳۶۴۷۳۳۰۰',
     mapQuery: 'شیراز خیابان ملاصدرا خیابان جمالی باشگاه پروشات',
     image: 'img/cardio-arena.jpg',
-    secondaryImage: 'img/hero-standard.jpg',
+    secondaryImage: 'img/spa-recovery.jpg',
     facilities: [
       'مجموعه کامل دستگاه‌های بیومکانیک، سیم‌کش‌های چندجهته و وزنه آزاد',
       'بخش مجزای هوازی و ارتقای استقامت قلبی‌عروقی',

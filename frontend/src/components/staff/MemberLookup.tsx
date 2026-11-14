@@ -20,6 +20,16 @@ export const MemberLookup: React.FC<MemberLookupProps> = ({
   const [results, setResults] = useState<Member[]>([]);
   const [searching, setSearching] = useState(false);
   const [searchedOnce, setSearchedOnce] = useState(false);
+  const [submittingMemberId, setSubmittingMemberId] = useState<number | null>(null);
+
+  const handleSelectMember = async (memberId: number) => {
+    setSubmittingMemberId(memberId);
+    try {
+      await onSelectMember(memberId);
+    } finally {
+      setSubmittingMemberId(null);
+    }
+  };
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -94,8 +104,9 @@ export const MemberLookup: React.FC<MemberLookupProps> = ({
               <Button
                 size="sm"
                 variant="outline"
-                onClick={() => onSelectMember(m.id)}
-                loading={loading}
+                onClick={() => handleSelectMember(m.id)}
+                loading={loading && submittingMemberId === m.id}
+                disabled={loading && submittingMemberId !== m.id}
               >
                 ثبت ورود
               </Button>

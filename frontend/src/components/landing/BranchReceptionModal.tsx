@@ -10,6 +10,7 @@ interface BranchReceptionModalProps {
 
 export const BranchReceptionModal: React.FC<BranchReceptionModalProps> = ({
   isOpen,
+  defaultBranchSlug,
   onClose,
 }) => {
   useEffect(() => {
@@ -65,11 +66,15 @@ export const BranchReceptionModal: React.FC<BranchReceptionModalProps> = ({
         <div className="space-y-3">
           {SHIRAZ_BRANCHES.map((b) => {
             const isPremium = b.isPremium;
+            const isSelected = Boolean(defaultBranchSlug && b.slug === defaultBranchSlug);
+
             return (
               <div
                 key={b.slug}
-                className={`p-3.5 sm:p-4 border transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
-                  isPremium
+                className={`p-3.5 sm:p-4 border transition-all duration-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
+                  isSelected
+                    ? 'bg-[#151410] border-[#C9A96A] shadow-md shadow-[#C9A96A]/10 ring-1 ring-[#C9A96A]/60'
+                    : isPremium
                     ? 'bg-[#12110E] border-[#C9A96A]/45 hover:border-[#C9A96A]'
                     : 'bg-[#101014] border-[#F2EFE9]/10 hover:border-[#F2EFE9]/25'
                 }`}
@@ -88,6 +93,11 @@ export const BranchReceptionModal: React.FC<BranchReceptionModalProps> = ({
                     >
                       {b.genderLabel}
                     </span>
+                    {isSelected && (
+                      <span className="text-[9px] font-black px-2 py-0.5 bg-[#C9A96A] text-[#070708] rounded-[2px]">
+                        شعبه انتخابی شما
+                      </span>
+                    )}
                   </div>
 
                   <p className="text-[10px] sm:text-[11px] text-[#8A857B] flex items-center gap-1 truncate">
@@ -99,9 +109,9 @@ export const BranchReceptionModal: React.FC<BranchReceptionModalProps> = ({
                 <div className="flex items-center gap-2 shrink-0 pt-1 sm:pt-0">
                   <a
                     href={`tel:${b.phone || '07138440107'}`}
-                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 sm:px-4 sm:py-2.5 bg-[#C9A96A] hover:bg-[#d8b97a] text-[#070708] text-[11px] sm:text-xs font-black transition-colors rounded-[2px]"
+                    className="group flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 sm:px-4 sm:py-2.5 bg-[#C9A96A] hover:bg-[#d8b97a] text-[#070708] text-[11px] sm:text-xs font-black transition-colors rounded-[2px]"
                   >
-                    <Phone className="w-3.5 h-3.5" />
+                    <Phone className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
                     <span dir="ltr">{b.phoneDisplay}</span>
                   </a>
 
