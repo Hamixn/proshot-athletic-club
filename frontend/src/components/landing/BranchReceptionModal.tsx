@@ -121,6 +121,7 @@ export const BranchReceptionModal: React.FC<BranchReceptionModalProps> = ({
                     rel="noopener noreferrer"
                     className="p-2 sm:p-2.5 border border-[#F2EFE9]/15 hover:border-[#C9A96A] text-[#8A857B] hover:text-[#EDE8DF] transition-colors"
                     title="مسیریابی روی نقشه"
+                    aria-label={`مسیریابی ${b.name} روی نقشه گوگل`}
                   >
                     <ArrowUpLeft className="w-3.5 h-3.5" />
                   </a>

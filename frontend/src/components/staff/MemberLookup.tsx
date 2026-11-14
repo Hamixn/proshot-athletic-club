@@ -65,7 +65,7 @@ export const MemberLookup: React.FC<MemberLookupProps> = ({
         <div className="flex-1">
           <Input
             label="نام، شماره موبایل یا کد عضویت"
-            placeholder="مثال: محمدی یا 09121111111"
+            placeholder="مثال: محمدی یا 09171234567"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />

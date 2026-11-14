@@ -93,7 +93,7 @@ export const StaffPlanManager: React.FC<StaffPlanManagerProps> = ({ branchId }) 
         content,
         file_name: fileName || (fileUrl ? 'Program-Attachment.pdf' : null),
         file_url: fileUrl,
-        file_size: fileUrl ? '1.5 MB' : null,
+        file_size: fileUrl ? 'پیوست آنلاین' : null,
       });
 
       if (res.success) {
